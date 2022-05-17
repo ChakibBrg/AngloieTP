@@ -1,8 +1,9 @@
 package com.tp.angloie;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Joueur {
+public class Joueur implements Serializable {
     public static int meilleur_record;
     private String nom;
     private int meilleur_score;

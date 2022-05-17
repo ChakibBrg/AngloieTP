@@ -1,8 +1,9 @@
 package com.tp.angloie;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 
-public class Partie {
+public class Partie implements Serializable {
     private int posActurelle, pts;
     private Plateau plateau;
 

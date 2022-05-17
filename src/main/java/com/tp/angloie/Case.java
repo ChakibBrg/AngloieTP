@@ -1,19 +1,20 @@
 package com.tp.angloie;
 
-abstract public class Case {
-    protected String color;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
-    public Case(String color) {
-        this.color = color;
+import java.io.Serializable;
+
+abstract public class Case extends Circle implements Serializable {
+
+    public Case() {
+        setStroke(Color.BROWN);
+        setStrokeWidth(2);
+
+
+
     }
 
-    public String getColor() {
-        return color;
-    }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    abstract void action ();
+    abstract void action();
 }
