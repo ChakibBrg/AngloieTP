@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Joueur implements Serializable {
     public static int meilleur_record;
+
     private String nom;
     private int meilleur_score;
     private ArrayList<Partie> parties_sauvegardees;
