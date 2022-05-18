@@ -6,7 +6,7 @@ public class CaseDefinition extends Question{
     }
 
     @Override
-    void action() {
+    void action(Joueur player) {
 
     }
 

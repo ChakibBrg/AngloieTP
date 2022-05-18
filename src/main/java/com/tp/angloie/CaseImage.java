@@ -6,7 +6,7 @@ public class CaseImage extends Question {
     }
 
     @Override
-    void action() {
+    void action(Joueur player) {
 
     }
 

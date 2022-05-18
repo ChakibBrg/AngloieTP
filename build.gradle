@@ -25,11 +25,11 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.tp.angloie'
-    mainClass = 'com.tp.angloie.HelloApplication'
+    mainClass = 'com.tp.angloie.Main'
 }
 
 javafx {
-    version = '17.0.1'
+    version = '18'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 

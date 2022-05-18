@@ -1,8 +1,12 @@
 package com.tp.angloie;
 
 public class Malus extends Case{
+    public Malus() {
+        super();
+    }
+
     @Override
-    void action() {
+    void action(Joueur player) {
 
     }
 }

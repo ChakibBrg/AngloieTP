@@ -16,5 +16,5 @@ abstract public class Case extends Circle implements Serializable {
     }
 
 
-    abstract void action();
+    abstract void action(Joueur player);
 }

@@ -4,6 +4,7 @@ package com.tp.angloie;
    protected Question qst ;
 
    public Question (Question qst){
+       super();
        this.qst=qst ;
 
    }
