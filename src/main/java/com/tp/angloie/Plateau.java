@@ -19,7 +19,7 @@ public class Plateau extends GridPane implements Serializable {
     public int i = 0 , j = 0 ;
     int colLowerBond = 0 ;
     int rowLowerBond= 0 ;
-    int colHigherBond = 13 +1;
+    int colHigherBond = 15 +1;
     int rowHigherBond= 14 +1;
 
 
@@ -33,14 +33,22 @@ public class Plateau extends GridPane implements Serializable {
 
 
         Random randGen =  new Random();
-
         while ( randomValues.size() != 25 ){
             int tmp = randGen.nextInt(1,99);
             if (! randomValues.contains(tmp) ){
                 randomValues.add(tmp);
             }
         }
+        Question qst  = null;
 
+        ArrayList<Case> tempCases = new ArrayList<>();
+        for ( int i=0 ; i<5 ;i++){
+            tempCases.add(new CaseDefinition(qst));
+            tempCases.add(new CaseImage(qst));
+            tempCases.add(new Bonus());
+            tempCases.add(new Malus());
+            tempCases.add(new Saut());
+        }
 
         int caseCount = 0 ;
         int k = 0  ;
@@ -55,30 +63,14 @@ public class Plateau extends GridPane implements Serializable {
 
 
         incrementIndexes();
-        Question qst  = null;
         Case tmp= null ;
                 while ( caseCount != 100 ){
 
                     if (randomValues.contains(caseCount)){
-                        if ( image != 5){
-                            tmp = new CaseImage(qst);
-                            image ++ ;
-                        }
-                        else if( def != 5) {
-                            tmp = new CaseDefinition(qst);
-                            def ++;
+                        if (tempCases.size()!= 0) {
 
-                        }else if( bonus != 5) {
-                            tmp = new Bonus();
-                            bonus++ ;
-
-                        }else if( malus != 5) {
-                            tmp = new Malus();
-                            malus ++ ;
-
-                        }else if( saut != 5) {
-                            tmp = new Saut();
-                            saut ++ ;
+                            tmp = tempCases.get(randGen.nextInt(0, tempCases.size()));
+                            tempCases.remove(tmp);
                         }
 
                     }
@@ -92,12 +84,16 @@ public class Plateau extends GridPane implements Serializable {
                     cases.add(tmp);
                     incrementIndexes();
 
-
-
-
-
                     caseCount ++ ;
                 }
+                this.add(new Fin(),j,i);
+                GridPane.setHalignment(tmp, HPos.CENTER);
+                GridPane.setValignment(tmp, VPos.CENTER);
+
+                cases.add(tmp);
+
+
+
 
 
     }
@@ -130,17 +126,21 @@ public class Plateau extends GridPane implements Serializable {
 
 
 
-       if ( i == rowLowerBond){
+       if ( i == rowLowerBond ){
            j++ ;
+           return;
        }
         if ( i ==rowHigherBond) {
            j-- ;
+           return;
        }
         if (j == colLowerBond){
            i-- ;
+           return;
        }
         if ( j == colHigherBond){
            i++;
+
        }
     }
 }

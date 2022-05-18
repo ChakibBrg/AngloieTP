@@ -7,10 +7,10 @@ import java.io.Serializable;
 
 abstract public class Case extends Circle implements Serializable {
     public Case() {
-        setStroke(Color.BROWN);
+        setStroke(Color.GREY);
         setFill(null);
-        setStrokeWidth(2);
-        setRadius(10);
+        setStrokeWidth(1);
+        setRadius(26);
 
 
 
