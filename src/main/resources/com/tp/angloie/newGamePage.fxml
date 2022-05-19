@@ -30,7 +30,7 @@
                         <Insets bottom="20.0" />
                      </padding>
                   </VBox>
-               <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="265.0" layoutY="197.0" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="126.0" text="New game" textFill="#ae2626" underline="true">
+               <Button alignment="CENTER" contentDisplay="CENTER" disable="false" layoutX="265.0" layoutY="197.0" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="126.0" text="New game" textFill="#ae2626" underline="true">
                   <opaqueInsets>
                      <Insets />
                   </opaqueInsets>
@@ -41,7 +41,7 @@
                      <Insets bottom="15.0" />
                   </VBox.margin>
                </Button>
-               <Button alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="247.0" layoutY="184.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Load saved game" textFill="#48b453" underline="true">
+               <Button  alignment="CENTER" contentDisplay="CENTER" disable="false" layoutX="247.0" layoutY="184.0" mnemonicParsing="false" prefHeight="26.0" onAction="#loadGameClick" prefWidth="126.0" text="Load saved game" textFill="#48b453" underline="true" >
                   <opaqueInsets>
                      <Insets />
                   </opaqueInsets>

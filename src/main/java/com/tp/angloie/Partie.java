@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 
 public class Partie implements Serializable {
-    private int posActurelle, pts;
+    private int posActuelle, pts;
     private Plateau plateau;
 
     public Partie(int posActurelle, int pts, Plateau plateau) {
-        this.posActurelle = posActurelle;
+        this.posActuelle = posActurelle;
         this.pts = pts;
         this.plateau = plateau;
     }
 
     public int getPosActurelle() {
-        return posActurelle;
+        return posActuelle;
     }
 
     public int getPts() {
@@ -26,7 +26,7 @@ public class Partie implements Serializable {
     }
 
     public void setPosActurelle(int posActurelle) {
-        this.posActurelle = posActurelle;
+        this.posActuelle = posActurelle;
     }
 
     public void setPts(int pts) {

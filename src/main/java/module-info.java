@@ -1,6 +1,8 @@
 module com.tp.angloie {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
+
 
     requires org.controlsfx.controls;
 
