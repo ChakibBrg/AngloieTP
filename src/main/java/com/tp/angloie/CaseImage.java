@@ -3,7 +3,11 @@ package com.tp.angloie;
 import javafx.scene.paint.Color;
 
 public class CaseImage extends Question {
-    public CaseImage(Question qst) {
+    public CaseImage() {
+        super();
+        setFill(Color.PINK);
+
+    }public CaseImage(Question qst) {
         super(qst);
         setFill(Color.PINK);
 
