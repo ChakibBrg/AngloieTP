@@ -8,23 +8,23 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Jeu  implements Serializable {
-    private ArrayList<Joueur> joueurs;
-
+    private HashMap<String,Joueur> joueurs;
     private Joueur joueurActuel;
     private Partie partieActuelle;
 
 
 
-    public Jeu(ArrayList<Joueur> joueurs, Joueur joueurActuel, Partie partieActuelle) {
+    public Jeu(HashMap<String,Joueur>  joueurs, Joueur joueurActuel, Partie partieActuelle) {
         super();
         this.joueurs = joueurs;
         this.joueurActuel = joueurActuel;
         this.partieActuelle = partieActuelle;
     }
 
-    public ArrayList<Joueur> getJoueurs() {
+    public HashMap<String,Joueur>  getJoueurs() {
         return joueurs;
     }
 
@@ -36,7 +36,7 @@ public class Jeu  implements Serializable {
         return partieActuelle;
     }
 
-    public void setJoueurs(ArrayList<Joueur> joueurs) {
+    public void setJoueurs(HashMap<String,Joueur> joueurs ) {
         this.joueurs = joueurs;
     }
 

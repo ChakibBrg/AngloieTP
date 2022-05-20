@@ -2,22 +2,25 @@ package com.tp.angloie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Joueur implements Serializable {
     public static int meilleur_record;
 
     private String nom;
     private int meilleur_score;
-    private ArrayList<Partie> parties_sauvegardees;
+    private HashMap<String,Partie> parties_sauvegardees;
     private boolean arret;
-    private ArrayList<Case> cases_visitees;
+    private Set<Integer> cases_visitees;
 
-    public Joueur(String nom, int meilleur_score, ArrayList<Partie> parties_sauvegardees, boolean arret, ArrayList<Case> cases_visitees) {
+    public Joueur(String nom, int meilleur_score, HashMap<String,Partie> parties_sauvegardees, boolean arret, Set<Integer> cases_visitees) {
         this.nom = nom;
         this.meilleur_score = meilleur_score;
         this.parties_sauvegardees = parties_sauvegardees;
         this.arret = arret;
         this.cases_visitees = cases_visitees;
+
     }
 
     public static int getMeilleur_record() {
@@ -32,7 +35,7 @@ public class Joueur implements Serializable {
         return meilleur_score;
     }
 
-    public ArrayList<Partie> getParties_sauvegardees() {
+    public HashMap<String,Partie> getParties_sauvegardees() {
         return parties_sauvegardees;
     }
 
@@ -40,7 +43,7 @@ public class Joueur implements Serializable {
         return arret;
     }
 
-    public ArrayList<Case> getCases_visitees() {
+    public Set<Integer> getCases_visitees() {
         return cases_visitees;
     }
 
@@ -56,7 +59,7 @@ public class Joueur implements Serializable {
         this.meilleur_score = meilleur_score;
     }
 
-    public void setParties_sauvegardees(ArrayList<Partie> parties_sauvegardees) {
+    public void setParties_sauvegardees(HashMap<String,Partie> parties_sauvegardees) {
         this.parties_sauvegardees = parties_sauvegardees;
     }
 
@@ -64,7 +67,7 @@ public class Joueur implements Serializable {
         this.arret = arret;
     }
 
-    public void setCasesVisitees(ArrayList<Case> cases_visitees) {
+    public void setCasesVisitees(Set<Integer> cases_visitees) {
         this.cases_visitees = cases_visitees;
     }
 
@@ -81,6 +84,6 @@ public class Joueur implements Serializable {
     }
 
     public void sauvegarderPartie (Partie partie) {
-        parties_sauvegardees.add(partie);
+        parties_sauvegardees.put(partie.getTitle() , partie);
     }
 }
