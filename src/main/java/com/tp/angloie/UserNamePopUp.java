@@ -31,7 +31,9 @@ public class UserNamePopUp {
                 Main.jeu.setJoueurActuel(Main.jeu.getJoueurs().get(userNametxt.getText()));
             }
             else{
-                Main.jeu.getJoueurs().put(userNametxt.getText(), new Joueur(userNametxt.getText(),0,null,false,null));
+                Joueur nouvJoueur  = new Joueur(userNametxt.getText(),0,null,false,null);
+                Main.jeu.getJoueurs().put(userNametxt.getText(),new Joueur(userNametxt.getText(),0,null,false,null) );
+                Main.jeu.setJoueurActuel(nouvJoueur);
                 if (Main.jeu  != null ) userNameCombo.getItems().addAll(Main.jeu.getJoueurs().keySet());
 
             }
@@ -48,6 +50,7 @@ public class UserNamePopUp {
                 newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getParties_sauvegardees() == null);
 
             }
+
         }
 
 

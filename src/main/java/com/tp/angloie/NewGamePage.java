@@ -133,7 +133,10 @@ public class NewGamePage {
 
         ////
         pop.show(Main.scene.getWindow());
-    }@FXML
+    }
+
+
+    @FXML
     protected void quitClick(ActionEvent e){
         if (Main.jeu != null) Utilis.writeObjectTofile("abs.ser" , Main.jeu);
         Platform.exit();
