@@ -8,7 +8,7 @@
 
 <?import javafx.scene.text.Text?>
 <?import com.tp.angloie.*?>
-<VBox prefHeight="438.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.GamePage">
+<VBox fx:id="rootContainer" prefHeight="438.0" prefWidth="256.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.GamePage">
      <HBox prefHeight="68.0" prefWidth="142.0">
       <De fx:id="D1" fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" />
       <De fx:id="D2" fitHeight="68.0" fitWidth="69.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />

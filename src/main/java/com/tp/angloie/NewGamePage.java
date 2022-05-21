@@ -71,6 +71,14 @@ public class NewGamePage {
     @FXML
     protected void newGameClick(ActionEvent e){
         if (Main.jeu != null) Main.jeu.setPartieActuelle(new Partie(0,0,new Plateau()));
+        fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
+
+        Main.root.getChildren().clear();
+        try {
+            Main.root.getChildren().add(fxmlLoader.load());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
@@ -107,12 +115,16 @@ public class NewGamePage {
                     pop.hide();
 
 
-                Main.stage.setWidth(1000);
-                Main.stage.setHeight(1000);
+                    Main.stage.setWidth(1000);
+                    Main.stage.setHeight(1000);
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
 
                     Main.root.getChildren().clear();
-                    Main.root.getChildren().add(Main.jeu.getPartieActuelle().getPlateau());
-
+                    try {
+                        Main.root.getChildren().add(fxmlLoader.load());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });
