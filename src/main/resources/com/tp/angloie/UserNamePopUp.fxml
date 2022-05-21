@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="200.0" maxWidth="465.0" minHeight="200.0" minWidth="465.0" prefHeight="200.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.UserNamePopUp">
    <children>
       <HBox prefHeight="31.0" prefWidth="947.0">
          <children>
-            <TextField fx:id="userNametxt"  alignment="CENTER" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Player name" />
+            <TextField fx:id="userNametxt" alignment="CENTER" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Player name" />
             <Text text="Or" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
@@ -30,7 +29,7 @@
             <Insets left="30.0" right="30.0" top="60.0" />
          </VBox.margin>
       </HBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" disable="false" mnemonicParsing="false" onAction="#confirmClick" prefHeight="32.0" prefWidth="105.0" text="START !" textAlignment="CENTER" textFill="#ae2626">
+      <Button alignment="CENTER" contentDisplay="CENTER" disable="false" mnemonicParsing="false" onAction="#confirmClick" prefHeight="32.0" prefWidth="105.0" text="Allons-y !" textAlignment="CENTER" textFill="#ae2626">
          <VBox.margin>
             <Insets left="180.0" right="130.0" top="20.0" />
          </VBox.margin>

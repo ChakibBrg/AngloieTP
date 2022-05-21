@@ -10,7 +10,7 @@ import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
 import java.util.HashMap;
-
+import javafx.scene.image.* ;
 public class UserNamePopUp {
     @FXML  private TextField userNametxt ;
     @FXML private ComboBox<String> userNameCombo;
@@ -32,6 +32,8 @@ public class UserNamePopUp {
             }
             else{
                 Main.jeu.getJoueurs().put(userNametxt.getText(), new Joueur(userNametxt.getText(),0,null,false,null));
+                if (Main.jeu  != null ) userNameCombo.getItems().addAll(Main.jeu.getJoueurs().keySet());
+
             }
             newGamePageCtrl.popup.hide();
             newGamePageCtrl.grid.setDisable(false);

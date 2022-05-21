@@ -43,7 +43,8 @@ public class Main extends Application {
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
+       // FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
         root = new Group();
         scene = new Scene(root);
 
