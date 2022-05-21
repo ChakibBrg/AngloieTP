@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.io.FileNotFoundException;
@@ -14,7 +15,7 @@ public class GamePage {
     @FXML public De D2 ;
     @FXML public Text resultTxt ;
     @FXML public Button lancerDe ;
-    @FXML public VBox rootContainer ;
+    @FXML public BorderPane rootContainer ;
 
 
     public GamePage() throws FileNotFoundException {
@@ -24,7 +25,7 @@ public class GamePage {
     @FXML
     void initialize(){
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
-        rootContainer.getChildren().add(Main.jeu.getPartieActuelle().getPlateau());
+        rootContainer.setLeft(Main.jeu.getPartieActuelle().getPlateau());
 
     }
 
