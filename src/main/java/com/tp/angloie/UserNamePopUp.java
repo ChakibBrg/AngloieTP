@@ -18,7 +18,9 @@ public class UserNamePopUp {
 
     @FXML
     protected void initialize() throws IOException {
-        if (Main.jeu  != null ) userNameCombo.getItems().addAll(Main.jeu.getJoueurs().keySet());
+        if (Main.jeu  != null ) {
+            if ( Main.jeu.getJoueurs() != null) userNameCombo.getItems().addAll(Main.jeu.getJoueurs().keySet());
+        }
 
 
     }

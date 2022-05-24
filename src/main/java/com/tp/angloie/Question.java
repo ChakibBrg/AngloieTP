@@ -1,13 +1,13 @@
 package com.tp.angloie;
 
  public abstract class Question extends Case{
-   protected Question qst ;
+   protected QuestionData qst ;
 
    public Question (){
        super();
 
 
-   }public Question (Question qst){
+   }public Question(QuestionData qst){
        super();
        this.qst=qst ;
 

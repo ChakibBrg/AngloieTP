@@ -2,15 +2,17 @@ package com.tp.angloie;
 
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Malus extends Case{
     public Malus() {
         super();
-        setFill(Color.RED);
+        c.setFill(Color.RED);
 
     }
 
     @Override
-    void action(Joueur player) {
+    void action(Joueur player, AtomicInteger deplacement) {
 
     }
 }

@@ -2,16 +2,18 @@ package com.tp.angloie;
 
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Saut extends Case{
 
     public Saut() {
         super();
-        setFill(Color.ORANGE);
+        c.setFill(Color.ORANGE);
 
     }
 
     @Override
-    void action(Joueur player) {
+    void action(Joueur player, AtomicInteger deplacement) {
 
     }
 }

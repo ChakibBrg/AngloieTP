@@ -17,6 +17,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.PopupWindow;
@@ -36,15 +37,19 @@ public class NewGamePage {
    @FXML  public Hyperlink Player ;
     public PopOver popup = new PopOver();
     VBox register;
+
     UserNamePopUp registerCtrl;
     FXMLLoader fxmlLoader;
     @FXML
     protected void initialize() throws IOException {
         loadGameBtn.setDisable(true);
         showRegisterPop(true);
+
+
     }
 
     public void showRegisterPop(boolean first) throws IOException {
+
         fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
         register = fxmlLoader.load() ;
         registerCtrl = fxmlLoader.getController();
@@ -70,19 +75,30 @@ public class NewGamePage {
     }
     @FXML
     protected void newGameClick(ActionEvent e){
-        if (Main.jeu != null) Main.jeu.setPartieActuelle(new Partie(0,0,new Plateau()));
-        fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
-        Main.stage.setWidth(1280);
-        Main.stage.setHeight(800);
-        Main.root.getChildren().clear();
-        try {
-            Main.root.getChildren().add(fxmlLoader.load());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Main.stage.centerOnScreen();
 
-    }
+            fxmlLoader = new FXMLLoader(Main.class.getResource("Partie.fxml"));
+            Main.jeu.setPartieActuelle(fxmlLoader.getController());
+
+            //fxmlLoader.setController(Main.jeu.getPartieActuelle());
+
+
+            Main.stage.setWidth(1300);
+            Main.stage.setWidth(900);
+
+            Main.root.getChildren().clear();
+            try {
+                Main.root.getChildren().add(fxmlLoader.load());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            Main.stage.centerOnScreen();
+        }
+
+
+
+
+
+
 
     @FXML
     protected void loadGameClick(ActionEvent e){
@@ -97,7 +113,7 @@ public class NewGamePage {
         pop.setTitle("Sélectionner une partie");
         pop.setHeaderAlwaysVisible(true);
         pop.setDetachable(false);
-        pop.setArrowSize(0);
+        pop.setArrowSize(2000);
         pop.setArrowLocation(PopOver.ArrowLocation.TOP_LEFT);
         pop.setContentNode(list);
         pop.setAutoHide(false);
@@ -114,13 +130,12 @@ public class NewGamePage {
                 String selected = savedGames.getSelectionModel().getSelectedItem();
                 if(!selected.isBlank()) {
                     Main.jeu.setPartieActuelle(Main.jeu.getJoueurActuel().getParties_sauvegardees().get(selected));
-                    Main.jeu.getPartieActuelle().getPlateau().createFormRandValues(null);
+                    Main.jeu.getPartieActuelle().getPlateau().createFormSavedValues();
                     pop.hide();
 
+                    Main.stage.setMaximized(true);
 
-                    Main.stage.setWidth(1280);
-                    Main.stage.setHeight(800);
-                    fxmlLoader = new FXMLLoader(Main.class.getResource("GamePage.fxml"));
+                    fxmlLoader = new FXMLLoader(Main.class.getResource("Partie.fxml"));
 
                     Main.root.getChildren().clear();
                     try {

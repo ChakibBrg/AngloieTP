@@ -2,15 +2,17 @@ package com.tp.angloie;
 
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Fin extends Case{
     public Fin() {
         super();
-        setFill(Color.BLACK);
+        c.setFill(Color.BLACK);
 
     }
 
     @Override
-    void action(Joueur player) {
+    void action(Joueur player, AtomicInteger deplacement) {
 
     }
 }

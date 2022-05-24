@@ -2,19 +2,21 @@ package com.tp.angloie;
 
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class CaseImage extends Question {
     public CaseImage() {
         super();
-        setFill(Color.PINK);
+        c.setFill(Color.PINK);
 
-    }public CaseImage(Question qst) {
+    }public CaseImage(QuestionData qst) {
         super(qst);
-        setFill(Color.PINK);
+        c.setFill(Color.PINK);
 
     }
 
     @Override
-    void action(Joueur player) {
+    void action(Joueur player, AtomicInteger deplacement) {
 
     }
 

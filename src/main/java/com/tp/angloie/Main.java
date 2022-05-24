@@ -27,11 +27,11 @@ public class Main extends Application {
 
         Main.stage =stage;
 
-        jeu =(Jeu) Utilis.readObjectFromFile("abs.ser");
+       // jeu =(Jeu) Utilis.readObjectFromFile("abs.ser");
 
-        if ( jeu == null )  jeu  =new Jeu(new HashMap<String,Joueur>(),null,null);
+      //  if ( jeu == null )
+            jeu  =new Jeu(new HashMap<String,Joueur>(),null,null);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
 
         root = new Group();
         scene = new Scene(root);
@@ -42,15 +42,15 @@ public class Main extends Application {
         stage.setHeight(600);
         stage.show();
         stage.centerOnScreen();
-        stage.setResizable(false);
         //// pour sauvegarder le contexte /////
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+       /* stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
                 if (Main.jeu != null) Utilis.writeObjectTofile("abs.ser" , Main.jeu);
                 Platform.exit();
             }
-        });
+        });*/
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
         root.getChildren().add(fxmlLoader.load()); //Pour afficher le menu
     }
     public static void main(String[] args) {
