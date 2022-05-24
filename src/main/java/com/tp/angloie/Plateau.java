@@ -176,9 +176,6 @@ public class Plateau extends GridPane implements Serializable {
         private final int inPos  ; // la case concernée
         private final int outPos  ; // la case concernée
         private int count ;
-        private final int   min = 2  ;
-        private final int medi = 22  ;
-        private final int max = 32;
 
 
         long previous =0;
@@ -198,20 +195,14 @@ public class Plateau extends GridPane implements Serializable {
 
         @Override
         public  void handle  ( long current) {
-
-            if(count == medi ){
-
+            if(count == 22 ){
                 cases.get(inPos).getChildren().remove(p);
                 cases.get(outPos).getChildren().add(p);
                 count++;
-
                 return;
             }
             if (count > 35) {
-
                 stop() ;
-                count=min ;
-
             }
             if (  current - previous > 60) {
                 if (count >= 10) img = new File("C:\\Users\\raouf\\Desktop\\among\\g" + count + ".png");
@@ -219,7 +210,6 @@ public class Plateau extends GridPane implements Serializable {
                 p.setImage(new Image(img.toURI().toString()));
                 count++;
                 previous = current;
-
             }
             }
         }
