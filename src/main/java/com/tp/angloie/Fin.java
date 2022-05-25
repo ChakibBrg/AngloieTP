@@ -12,7 +12,7 @@ public class Fin extends Case{
     }
 
     @Override
-    void action(Joueur player, AtomicInteger deplacement) {
+    void action(AtomicInteger points, AtomicInteger deplacement) {
 
     }
 }

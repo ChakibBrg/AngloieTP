@@ -2,7 +2,6 @@ package com.tp.angloie;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -49,5 +48,5 @@ abstract public class Case extends StackPane {
     }
 
 
-    abstract void action(Joueur player, AtomicInteger deplacement);
+    abstract void action(AtomicInteger points, AtomicInteger deplacement);
 }

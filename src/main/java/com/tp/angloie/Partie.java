@@ -26,7 +26,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Partie implements Serializable {
     private String  title;
     private  int valeurDe;
-    private  int posActuelle ,posProchaine  , pts;
+    private  int posActuelle ,posProchaine  ;
+    private AtomicInteger points ;
     private  Plateau plateau;
     private  Boolean canMove = false;
     private Set<Integer> cases_visitees;
@@ -45,6 +46,12 @@ public class Partie implements Serializable {
                         posActuelle=posProchaine;
 
                     }
+                    else try {
+                        throw new MauvaiseCaseException();
+                    } catch (MauvaiseCaseException e) {
+                        // afficher le message qui indique le bonne case
+                    }
+
 
                 }
 
@@ -63,7 +70,7 @@ public class Partie implements Serializable {
     public Partie (){
         this.title = "";
         this.posActuelle = 0;
-        this.pts = 0;
+        this.points.set(0);
         this.plateau = new Plateau();
         posActuelle = 0 ;
         setClickEventPlateau();
@@ -75,8 +82,8 @@ public class Partie implements Serializable {
         return posActuelle;
     }
 
-    public int getPts() {
-        return pts;
+    public AtomicInteger getPts() {
+        return points;
     }
 
     public Plateau getPlateau() {
@@ -87,8 +94,8 @@ public class Partie implements Serializable {
         this.posActuelle = posActurelle;
     }
 
-    public void setPts(int pts) {
-        this.pts = pts;
+    public void setPts(AtomicInteger pts) {
+        this.points = pts;
     }
 
     public void setPlateau(Plateau plateau) {
@@ -100,16 +107,11 @@ public class Partie implements Serializable {
     //////////////////////////////////////////////////////
     //////////////////////////////////////////////////////
     /////////// Partie graphique .../////////////////////
-
     @FXML transient public De D1 ;
     @FXML transient public De D2 ;
     @FXML transient public Text resultTxt ;
     @FXML transient public Button lancerDe ;
     @FXML transient public BorderPane rootContainer ;
-
-
-
-
     @FXML
     void initialize(){
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
@@ -120,17 +122,13 @@ public class Partie implements Serializable {
 
     }
 
-
 ////////////////Lancer les Des //////////////////////////////////////////
     @FXML private void lancerDeClick(ActionEvent e) throws InterruptedException {
-
         D1.playSound();
-
         for (int i = 0; i < 20; i++) {
                         D1.randomizeImg(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent actionEvent) {
-
                             }
                         });
                         D2.randomizeImg(new EventHandler<ActionEvent>() {
@@ -142,39 +140,24 @@ public class Partie implements Serializable {
                                 canMove=true;
                             }
                         });
-
                     }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
+    //////// Action a faire apres avoir cliqué sur la bonne case
      void action (){
         canMove = false;
-
              AtomicInteger deplacement = new AtomicInteger(0) ;
              do {
                  posProchaine += deplacement.get();
                  plateau.deplacer(posActuelle,posProchaine);
-                 plateau.getCases().get(posActuelle).action(Main.jeu.getJoueurActuel(), deplacement);
+                 plateau.getCases().get(posActuelle).action(points, deplacement);
                  posActuelle=posProchaine;
              }
              while ( deplacement.get() != 0 );
-
-
-
      }
 
+     class MauvaiseCaseException extends Exception {};
 
 
 
