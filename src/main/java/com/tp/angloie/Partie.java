@@ -70,7 +70,7 @@ public class Partie implements Serializable {
     public Partie (){
         this.title = "";
         this.posActuelle = 0;
-        this.points.set(0);
+        this.points = new AtomicInteger(0);
         this.plateau = new Plateau();
         posActuelle = 0 ;
         setClickEventPlateau();
@@ -138,6 +138,7 @@ public class Partie implements Serializable {
                                 posProchaine = posActuelle + valeurDe;
                                 resultTxt.setText(Integer.toString(valeurDe));
                                 canMove=true;
+                                lancerDe.setDisable(true);
                             }
                         });
                     }
@@ -147,7 +148,9 @@ public class Partie implements Serializable {
     //////// Action a faire apres avoir cliqué sur la bonne case
      void action (){
         canMove = false;
-             AtomicInteger deplacement = new AtomicInteger(0) ;
+         lancerDe.setDisable(false);
+
+         AtomicInteger deplacement = new AtomicInteger(0) ;
              do {
                  posProchaine += deplacement.get();
                  plateau.deplacer(posActuelle,posProchaine);
