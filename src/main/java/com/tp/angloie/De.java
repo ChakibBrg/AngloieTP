@@ -5,24 +5,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import javafx.scene.media.*;
 import javafx.util.Duration;
+
+
 
 public class De extends ImageView {
     private int res = 0;
     public Media  sound   = new Media(De.class.getResource("DiceImages/diceSound.mp3").toURI().toString());
     public static Image[] faces;
-
-
     static {
         faces = new Image[]{
                 new Image(De.class.getResourceAsStream("DiceImages/d1.png")),
@@ -38,27 +32,25 @@ public class De extends ImageView {
 
     public De() throws FileNotFoundException, URISyntaxException {
         super();
-
-
         randomizeImg(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
             }
         });
-
-
-
     }
 
 
-    public int getRes(){return res;}
-        public void playSound(){
+    public int getRes(){return res;} // retourne le dernier resultat du De
+
+    public void playSound(){
             MediaPlayer mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setStopTime(new Duration(1500));
             mediaPlayer.play();
+    }
 
-        }
+
+
+
       public void randomizeImg(EventHandler<ActionEvent> ev) {
           Random rand = new Random();
           RotateTransition rot =  new RotateTransition();
@@ -94,19 +86,11 @@ public class De extends ImageView {
         }
 
       }
-    public FadeTransition getFadeTransition(ImageView imageView, double fromValue, double toValue, int durationInMilliseconds) {
 
+    public FadeTransition getFadeTransition(ImageView imageView, double fromValue, double toValue, int durationInMilliseconds) {
         FadeTransition ft = new FadeTransition(Duration.millis(durationInMilliseconds), imageView);
         ft.setFromValue(fromValue);
         ft.setToValue(toValue);
-
         return ft;
-
     }
-
-
-
-
-
-
 }

@@ -29,46 +29,25 @@ import java.util.HashMap;
 public class NewGamePage {
 
 
-    ///// Start Game page attributs
+    ///// Les attributs de la page d'acceuil
    @FXML  public Button newGameBtn ;
    @FXML  public Button loadGameBtn ;
    @FXML  public GridPane grid ;
    @FXML  public Hyperlink Player ;
+
     public PopOver popup = new PopOver();
     VBox register;
-
     UserNamePopUp registerCtrl;
     FXMLLoader fxmlLoader;
+
     @FXML
     protected void initialize() throws IOException {
         loadGameBtn.setDisable(true);
         showRegisterPop(true);
-
-
     }
 
-
-    public void showSavedGamesPop(boolean first) throws IOException {
-
-        fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
-        register = fxmlLoader.load() ;
-        registerCtrl = fxmlLoader.getController();
-        registerCtrl.newGamePageCtrl= this;
-        popup.setTitle("Sélectionner");
-        popup.setHeaderAlwaysVisible(true);
-        popup.setDetachable(false);
-        popup.setArrowSize(0);
-        popup.setArrowLocation(PopOver.ArrowLocation.TOP_LEFT);
-        popup.setContentNode(register);
-        popup.setCloseButtonEnabled(!first);
-        popup.setAutoHide(false);
-        grid.setDisable(true);
-        popup.show(Main.scene.getWindow());
-        popup.centerOnScreen();
-    }
 
     public void showRegisterPop(boolean first) throws IOException {
-
         fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
         register = fxmlLoader.load() ;
         registerCtrl = fxmlLoader.getController();
@@ -85,7 +64,7 @@ public class NewGamePage {
         popup.show(Main.scene.getWindow());
         popup.centerOnScreen();
     }
-//////// Start Game page Events ///////////////////////////////////////////////////////////////////////////
+//////// Les evenements de la page d'acceuil page Events ///////////////////////////////////////////////////////////////////////////
 
 
     @FXML
@@ -129,10 +108,6 @@ public class NewGamePage {
 
 
 
-
-
-        ////
-
         Button load = new Button();
         load.setText("Charger");
         load.setOnAction(new EventHandler<ActionEvent>(){
@@ -145,7 +120,6 @@ public class NewGamePage {
                     savedPop.hide();
 
                     Main.stage.setMaximized(true);
-
 
                     fxmlLoader = new FXMLLoader(Main.class.getResource("Partie.fxml"));
                     fxmlLoader.setController(Main.jeu.getPartieActuelle());
@@ -184,7 +158,6 @@ public class NewGamePage {
     @FXML
     protected void quitClick(ActionEvent e){
 
-
         HashMap<String,Partie> parts = new HashMap<>();
         Partie test  = new Partie();
         test.setTitle("saved1");
@@ -200,7 +173,7 @@ public class NewGamePage {
 
         if (Main.jeu != null) {
             try {
-                Utilis.writeObjectTofile("abs.ser", Main.jeu);
+                Utilis.writeObjectTofile("Context.ser", Main.jeu);
             } catch(Exception ex2){
                 System.out.println(ex2.getMessage());
             }

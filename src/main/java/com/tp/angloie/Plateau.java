@@ -1,18 +1,12 @@
 package com.tp.angloie;
 
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
 
 import java.io.File;
 import java.io.Serializable;
@@ -20,21 +14,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
+    private final int COL_MIN_LOWER_BOUND =0 ;
+    private final int COL_MAX_HIGHER_BOUND =15 +1 ;
+    private final int ROW_MIN_LOWER_BOUND =0 ;
+    private final int ROW_MAX_HIGHER_BOUND =13 +1 ;
+
+    private transient int colLowerBond  ;
+    private transient int rowLowerBond ;
+    private transient int  colHigherBond ;
+    private transient int rowHigherBond;
+
      transient private ArrayList<Case> cases ;
      private ArrayList<Integer>  randomValues  ;
      private ArrayList<Integer>  indexes  ;
-    public int i = 0 , j = 0 ;
-    int colLowerBond = 0 ;
-    int rowLowerBond= 0 ;
-    int colHigherBond = 15 +1;
-    int rowHigherBond= 13 +1;
-    transient Image c ;
+     public int i = 0 , j = 0 ;
+
+     private transient Image avatar ;
+     private transient ImageView imageViewCase ;
 
 
 
-    transient  File img = null;
-    transient Image  med = null;
-    transient ImageView p ;
+
     /////getters and setters
     public ArrayList<Case> getCases() {
         return cases;
@@ -43,9 +43,12 @@ public class Plateau extends GridPane implements Serializable {
     ////constructeur
     public Plateau ()  {
 
-        c = new Image(getClass().getResourceAsStream("among/g01.png"));
+        avatar = new Image(getClass().getResourceAsStream("among/g01.png"));
 
-
+        colLowerBond = COL_MIN_LOWER_BOUND ;
+        rowLowerBond= ROW_MIN_LOWER_BOUND ;
+        colHigherBond = COL_MAX_HIGHER_BOUND;
+        rowHigherBond= ROW_MAX_HIGHER_BOUND;
 
         cases = new ArrayList<>();
         setWidth(600);
@@ -100,28 +103,29 @@ public class Plateau extends GridPane implements Serializable {
                 this.add(tmp,j,i);
                 GridPane.setHalignment(tmp, HPos.CENTER);
                 GridPane.setValignment(tmp, VPos.CENTER);
-
-                p= new ImageView(med);
-                p.setFitHeight(50);
-                p.setFitWidth(35);
                 cases.add(tmp);
-                p.setImage(c);
-                cases.get(0).getChildren().add(p);
+
+                    imageViewCase= new ImageView();
+                    imageViewCase.setFitHeight(50);
+                    imageViewCase.setFitWidth(35);
+                    imageViewCase.setImage(avatar);
+
+                    cases.get(0).getChildren().add(imageViewCase);
 
 
 
     }
 
-    public void createFormSavedValues (){ // creer un plateau selon un tableau randomValues pour les 25 cases
+    public void createFormSavedValues (){ // creer un plateau en utilisant le tableau sauvegardeé precedemment ( serialisé )
 
-        c = new Image(getClass().getResourceAsStream("among/g01.png"));
+        avatar = new Image(getClass().getResourceAsStream("among/g01.png"));
 
         cases = new ArrayList<>();
         i=j=0;
-            colLowerBond = 0 ;
-            rowLowerBond= 0 ;
-         colHigherBond = 15 +1;
-         rowHigherBond= 13 +1;
+              colLowerBond = COL_MIN_LOWER_BOUND ;
+              rowLowerBond= ROW_MIN_LOWER_BOUND ;
+              colHigherBond = COL_MAX_HIGHER_BOUND;
+              rowHigherBond= ROW_MAX_HIGHER_BOUND;
         setWidth(600);
         setHeight(600);
 
@@ -170,12 +174,12 @@ public class Plateau extends GridPane implements Serializable {
         GridPane.setValignment(tmp, VPos.CENTER);
         cases.add(tmp);
 
-        p= new ImageView(med);
-        p.setFitHeight(50);
-        p.setFitWidth(35);
+        imageViewCase= new ImageView();
+        imageViewCase.setFitHeight(50);
+        imageViewCase.setFitWidth(35);
         cases.add(tmp);
-        p.setImage(c);
-        cases.get(Main.jeu.getPartieActuelle().getPosActuelle()).getChildren().add(p);
+        imageViewCase.setImage(avatar);
+        cases.get(Main.jeu.getPartieActuelle().getPosActuelle()).getChildren().add(imageViewCase);
 
     }
 
@@ -190,14 +194,13 @@ public class Plateau extends GridPane implements Serializable {
         long previous =0;
 
             public AnimationAvatar(int inPos,int outPos ){
-                 img = null;
-                 med = null;
+
 
                 this.inPos = inPos ;
                 this.outPos = outPos ;
 
 
-                StackPane.setMargin(p,new Insets(0,0,7,0));
+                StackPane.setMargin(imageViewCase,new Insets(0,0,7,0));
 
 
             }
@@ -205,8 +208,8 @@ public class Plateau extends GridPane implements Serializable {
         @Override
         public  void handle  ( long current) {
             if(count == 22 ){
-                cases.get(inPos).getChildren().remove(p);
-                cases.get(outPos).getChildren().add(p);
+                cases.get(inPos).getChildren().remove(imageViewCase);
+                cases.get(outPos).getChildren().add(imageViewCase);
                 count++;
                 return;
             }
@@ -214,26 +217,22 @@ public class Plateau extends GridPane implements Serializable {
                 stop() ;
             }
             if (  current - previous > 60) {
-                if (count >= 10)p.setImage( new Image(getClass().getResourceAsStream("among/g"+count+".png")));
-                else p.setImage( new Image(getClass().getResourceAsStream("among/g0"+count+".png")));
+                if (count >= 10) imageViewCase.setImage( new Image(getClass().getResourceAsStream("among/g"+count+".png")));
+                else imageViewCase.setImage( new Image(getClass().getResourceAsStream("among/g0"+count+".png")));
                 count++;
                 previous = current;
             }
             }
         }
 
+        /// Deplcement de l'avatar sur le plateau
     public void deplacer(int current  , int dest){
-
-
         new AnimationAvatar(current,dest).start();
-
-
     }
 
 
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////:
+/////// Gerer les indice de la grille au cours de la creation du tableau /////////////////////
 
    public void  incrementIndexes( ){
 

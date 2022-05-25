@@ -20,7 +20,7 @@ public class Main extends Application {
 
         Main.stage =stage;
         try {
-            jeu = (Jeu) Utilis.readObjectFromFile("abs.ser");
+            jeu = (Jeu) Utilis.readObjectFromFile("Context.ser");
             if ( jeu == null) jeu  = new Jeu(new HashMap<>(), null ,null);
 
             root = new Group();

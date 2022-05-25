@@ -1,7 +1,5 @@
 package com.tp.angloie;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,16 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
-import org.controlsfx.control.action.Action;
-
-import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Partie implements Serializable {
@@ -33,40 +23,6 @@ public class Partie implements Serializable {
     private Set<Integer> cases_visitees;
     private  transient   EventHandler<MouseEvent> clickEvent = null  ;
 
-
-    public void setClickEventPlateau(){
-        clickEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if (canMove && mouseEvent.getTarget() instanceof Ellipse) {
-
-                    if (plateau.getCases().indexOf(((Ellipse) mouseEvent.getTarget()).getParent()) == posProchaine) {
-                        System.out.println("NOICE");
-                        action();
-                        posActuelle=posProchaine;
-
-                    }
-                    else try {
-                        throw new MauvaiseCaseException();
-                    } catch (MauvaiseCaseException e) {
-                        // afficher le message qui indique le bonne case
-                    }
-
-
-                }
-
-
-            }
-        };
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getTitle() {
-        return title;
-    }
-
     public Partie (){
         this.title = "";
         this.posActuelle = 0;
@@ -76,6 +32,15 @@ public class Partie implements Serializable {
         setClickEventPlateau();
         plateau.setOnMouseClicked(clickEvent);
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle() {
+        return title;
+    }
+
+
 
 
     public int getPosActuelle() {
@@ -104,6 +69,39 @@ public class Partie implements Serializable {
         }
         this.plateau = plateau;
     }
+
+
+
+
+    /////// Affecter l'evenement du clique pour le plateau
+    public void setClickEventPlateau(){
+        clickEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (canMove && mouseEvent.getTarget() instanceof Ellipse) {
+
+                    if (plateau.getCases().indexOf(((Ellipse) mouseEvent.getTarget()).getParent()) == posProchaine) {
+                        System.out.println("NOICE");
+                        action();
+                        posActuelle=posProchaine;
+
+                    }
+                    else try {
+                        throw new MauvaiseCaseException();
+                    } catch (MauvaiseCaseException e) {
+                        // afficher le message qui indique le bonne case
+                    }
+
+
+                }
+
+
+            }
+        };
+    }
+
+
+
     //////////////////////////////////////////////////////
     //////////////////////////////////////////////////////
     /////////// Partie graphique .../////////////////////

@@ -32,8 +32,6 @@ public  class Utilis {
             System.out.println("Deserialized");
 
         } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-
             return new Jeu(new HashMap<>(),null,null);
         }
 
