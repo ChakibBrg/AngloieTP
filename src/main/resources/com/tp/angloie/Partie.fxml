@@ -11,7 +11,7 @@
 <?import com.tp.angloie.De?>
 
 
-<BorderPane fx:id="rootContainer" maxHeight="960.0" maxWidth="1280.0" minHeight="960.0" minWidth="1280.0" prefHeight="960.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.Partie">
+<BorderPane fx:id="rootContainer" maxHeight="960.0" maxWidth="1280.0" minHeight="960.0" minWidth="1280.0" prefHeight="960.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
    <right>
        <GridPane  alignment="CENTER_RIGHT" maxHeight="100.0" maxWidth="100.0" minHeight="160.0" minWidth="150.0" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
            <columnConstraints>

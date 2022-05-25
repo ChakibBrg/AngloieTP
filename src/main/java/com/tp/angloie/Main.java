@@ -1,18 +1,10 @@
 package com.tp.angloie;
 
-import com.tp.angloie.Utilis ;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -22,27 +14,27 @@ public class Main extends Application {
     public static Scene scene ;
     public static Stage stage ;
 
+
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage)  {
 
         Main.stage =stage;
+        try {
+            jeu = (Jeu) Utilis.readObjectFromFile("abs.ser");
+            if ( jeu == null) jeu  = new Jeu(new HashMap<>(), null ,null);
 
-       // jeu =(Jeu) Utilis.readObjectFromFile("abs.ser");
+            root = new Group();
+            scene = new Scene(root);
 
-      //  if ( jeu == null )
-            jeu  =new Jeu(new HashMap<String,Joueur>(),null,null);
+            stage.setTitle("Our Game");
+            stage.setScene(scene);
+            stage.setWidth(800);
+            stage.setHeight(600);
+            stage.show();
+            stage.centerOnScreen();
 
 
-        root = new Group();
-        scene = new Scene(root);
-
-        stage.setTitle("ANGl'Oie");
-        stage.setScene(scene);
-        stage.setWidth(800);
-        stage.setHeight(600);
-        stage.show();
-        stage.centerOnScreen();
-        //// pour sauvegarder le contexte /////
+            //// pour sauvegarder le contexte /////
        /* stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent windowEvent) {
@@ -50,8 +42,15 @@ public class Main extends Application {
                 Platform.exit();
             }
         });*/
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
-        root.getChildren().add(fxmlLoader.load()); //Pour afficher le menu
+
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
+            root.getChildren().add(fxmlLoader.load()); //Pour afficher le menu
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+            System.out.println("OUpsss");
+
+        }
     }
     public static void main(String[] args) {
         launch();

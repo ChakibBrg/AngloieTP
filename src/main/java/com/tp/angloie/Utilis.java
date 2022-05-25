@@ -1,6 +1,7 @@
 package com.tp.angloie;
 
 import java.io.*;
+import java.util.HashMap;
 
 public  class Utilis {
     public static  void writeObjectTofile(String path , Object obj){
@@ -12,7 +13,10 @@ public  class Utilis {
             fos.close();
             System.out.println("serialized");
 
-        } catch(IOException ee){ee.printStackTrace(); }
+        } catch(IOException ee){
+            ee.printStackTrace();
+
+        }
     }
 
     public static Object readObjectFromFile(String path){
@@ -29,7 +33,8 @@ public  class Utilis {
 
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
-            return null;
+
+            return new Jeu(new HashMap<>(),null,null);
         }
 
         return obj ;

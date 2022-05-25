@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -17,31 +18,28 @@ import javafx.scene.media.*;
 import javafx.util.Duration;
 
 public class De extends ImageView {
-    public static  String path ="C:\\Users\\raouf\\IdeaProjects\\Angloie\\src\\main\\resources\\com\\tp\\angloie\\DiceImages" ;
     private int res = 0;
-    public Media  sound   = new Media(new File(path + "\\dice.mp3").toURI().toString());
+    public Media  sound   = new Media(De.class.getResource("DiceImages/diceSound.mp3").toURI().toString());
     public static Image[] faces;
 
 
-
     static {
-        try {
-            faces = new Image[]{
-                    new Image(new FileInputStream(path+"\\d1.png")),
-                    new Image(new FileInputStream(path+"\\d2.png")),
-                    new Image(new FileInputStream(path+"\\d3.png")),
-                    new Image(new FileInputStream(path+"\\d4.png")),
-                    new Image(new FileInputStream(path+"\\d5.png")),
-                    new Image(new FileInputStream(path+"\\d6.png")),
-            };
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        faces = new Image[]{
+                new Image(De.class.getResourceAsStream("DiceImages/d1.png")),
+                new Image(De.class.getResourceAsStream("DiceImages/d2.png")),
+                new Image(De.class.getResourceAsStream("DiceImages/d3.png")),
+                new Image(De.class.getResourceAsStream("DiceImages/d4.png")),
+                new Image(De.class.getResourceAsStream("DiceImages/d5.png")),
+                new Image(De.class.getResourceAsStream("DiceImages/d6.png")),
+
+        };
     }
 
 
-    public De() throws FileNotFoundException {
+    public De() throws FileNotFoundException, URISyntaxException {
         super();
+
+
         randomizeImg(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -56,8 +54,9 @@ public class De extends ImageView {
 
     public int getRes(){return res;}
         public void playSound(){
-           /* MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.play();*/
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setStopTime(new Duration(1500));
+            mediaPlayer.play();
 
         }
       public void randomizeImg(EventHandler<ActionEvent> ev) {

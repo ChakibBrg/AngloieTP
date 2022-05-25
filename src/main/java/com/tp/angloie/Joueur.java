@@ -12,14 +12,12 @@ public class Joueur implements Serializable {
     private int meilleur_score;
     private HashMap<String,Partie> parties_sauvegardees;
     private boolean arret;
-    private Set<Integer> cases_visitees;
 
     public Joueur(String nom, int meilleur_score, HashMap<String,Partie> parties_sauvegardees, boolean arret, Set<Integer> cases_visitees) {
         this.nom = nom;
         this.meilleur_score = meilleur_score;
         this.parties_sauvegardees = parties_sauvegardees;
         this.arret = arret;
-        this.cases_visitees = cases_visitees;
 
     }
 
@@ -43,9 +41,7 @@ public class Joueur implements Serializable {
         return arret;
     }
 
-    public Set<Integer> getCases_visitees() {
-        return cases_visitees;
-    }
+
 
     public static void setMeilleur_record(int meilleur_record) {
         Joueur.meilleur_record = meilleur_record;
@@ -67,9 +63,7 @@ public class Joueur implements Serializable {
         this.arret = arret;
     }
 
-    public void setCasesVisitees(Set<Integer> cases_visitees) {
-        this.cases_visitees = cases_visitees;
-    }
+
 
     public void deplacer (int deplacement) {
 

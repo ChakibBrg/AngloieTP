@@ -45,6 +45,7 @@ public class UserNamePopUp {
             newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getParties_sauvegardees() == null);
         }else{
             if ( userNameCombo.getValue()!= null){
+
                 Main.jeu.setJoueurActuel(Main.jeu.getJoueurs().get(userNameCombo.getValue()));
                 newGamePageCtrl.popup.hide();
                 newGamePageCtrl.grid.setDisable(false);

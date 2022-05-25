@@ -1,6 +1,7 @@
 package com.tp.angloie;
 
 import javafx.animation.AnimationTimer;
+import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -27,13 +28,13 @@ public class Plateau extends GridPane implements Serializable {
     int rowLowerBond= 0 ;
     int colHigherBond = 15 +1;
     int rowHigherBond= 13 +1;
+    transient Image c ;
 
-    Image c = new Image(new File("C:\\Users\\raouf\\Desktop\\among\\g01.png").toURI().toString());
 
 
-    File img = null;
-    Image  med = null;
-    ImageView p = new ImageView(med);
+    transient  File img = null;
+    transient Image  med = null;
+    transient ImageView p ;
     /////getters and setters
     public ArrayList<Case> getCases() {
         return cases;
@@ -41,6 +42,11 @@ public class Plateau extends GridPane implements Serializable {
 
     ////constructeur
     public Plateau ()  {
+
+        c = new Image(getClass().getResourceAsStream("among/g01.png"));
+
+
+
         cases = new ArrayList<>();
         setWidth(600);
         setHeight(600);
@@ -95,25 +101,27 @@ public class Plateau extends GridPane implements Serializable {
                 GridPane.setHalignment(tmp, HPos.CENTER);
                 GridPane.setValignment(tmp, VPos.CENTER);
 
-
+                p= new ImageView(med);
                 p.setFitHeight(50);
                 p.setFitWidth(35);
                 cases.add(tmp);
                 p.setImage(c);
                 cases.get(0).getChildren().add(p);
-                 // avatarAnimation(3,2);
+
 
 
     }
 
     public void createFormSavedValues (){ // creer un plateau selon un tableau randomValues pour les 25 cases
 
+        c = new Image(getClass().getResourceAsStream("among/g01.png"));
+
         cases = new ArrayList<>();
         i=j=0;
-        colLowerBond = 0 ;
-        rowLowerBond= 0 ;
-        colHigherBond = 15 +1;
-        rowHigherBond= 14 +1;
+            colLowerBond = 0 ;
+            rowLowerBond= 0 ;
+         colHigherBond = 15 +1;
+         rowHigherBond= 13 +1;
         setWidth(600);
         setHeight(600);
 
@@ -162,6 +170,7 @@ public class Plateau extends GridPane implements Serializable {
         GridPane.setValignment(tmp, VPos.CENTER);
         cases.add(tmp);
 
+        p= new ImageView(med);
         p.setFitHeight(50);
         p.setFitWidth(35);
         cases.add(tmp);
@@ -175,7 +184,7 @@ public class Plateau extends GridPane implements Serializable {
     class AnimationAvatar extends AnimationTimer {
         private final int inPos  ; // la case concernée
         private final int outPos  ; // la case concernée
-        private int count ;
+        private int count=1 ;
 
 
         long previous =0;
@@ -205,9 +214,8 @@ public class Plateau extends GridPane implements Serializable {
                 stop() ;
             }
             if (  current - previous > 60) {
-                if (count >= 10) img = new File("C:\\Users\\raouf\\Desktop\\among\\g" + count + ".png");
-                else img = new File("C:\\Users\\raouf\\Desktop\\among\\g0" + count + ".png");
-                p.setImage(new Image(img.toURI().toString()));
+                if (count >= 10)p.setImage( new Image(getClass().getResourceAsStream("among/g"+count+".png")));
+                else p.setImage( new Image(getClass().getResourceAsStream("among/g0"+count+".png")));
                 count++;
                 previous = current;
             }
@@ -216,7 +224,6 @@ public class Plateau extends GridPane implements Serializable {
 
     public void deplacer(int current  , int dest){
 
-        //cases.get(current).getChildren().remove(p);
 
         new AnimationAvatar(current,dest).start();
 
