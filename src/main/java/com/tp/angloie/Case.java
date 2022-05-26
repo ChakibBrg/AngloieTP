@@ -1,6 +1,7 @@
 package com.tp.angloie;
 
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -39,6 +40,7 @@ abstract public class Case extends StackPane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 c.setOpacity(1);
+                c.setCursor(Cursor.HAND);
 
             }
         });

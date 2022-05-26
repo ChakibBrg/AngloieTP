@@ -3,10 +3,14 @@ package com.tp.angloie;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.text.Text;
 import java.io.Serializable;
@@ -109,13 +113,15 @@ public class Partie implements Serializable {
     @FXML transient public De D2 ;
     @FXML transient public Text resultTxt ;
     @FXML transient public Button lancerDe ;
-    @FXML transient public BorderPane rootContainer ;
+    @FXML transient AnchorPane plateauContainer;
     @FXML
     void initialize(){
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
-        rootContainer.setCenter(plateau);
-        BorderPane.setAlignment(plateau, Pos.CENTER_LEFT);
+
+        plateauContainer.getChildren().add(plateau);
         setClickEventPlateau();
+        GridPane.setHalignment(plateauContainer, HPos.CENTER);
+        GridPane.setValignment(plateauContainer, VPos.CENTER);
         plateau.setOnMouseClicked(clickEvent);
 
     }

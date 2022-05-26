@@ -4,50 +4,56 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="grid" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.NewGamePage">
-   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="609.6000000000001" minWidth="10.0" prefWidth="211.1999938964844" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="753.4000244140625" minWidth="10.0" prefWidth="342.40000610351564" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="723.8" minWidth="10.0" prefWidth="247.79997558593755" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="126.00000610351563" minHeight="10.0" prefHeight="126.00000610351563" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="87.60001220703126" minHeight="10.0" prefHeight="58.79999389648438" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="152.2" />
-   </rowConstraints>
-   <children>
-   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-      <opaqueInsets>
-         <Insets />
-      </opaqueInsets>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
-      <Text fill="#1c1c43" fontSmoothingType="LCD" layoutX="10.0" layoutY="77.0" stroke="#208c9e" strokeWidth="2.0" text="Our Game" textAlignment="CENTER" wrappingWidth="361.6000487804413" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-         <font>
-            <Font size="45.0" />
-         </font>
-      </Text>
-      <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-         <font>
-            <Font size="29.0" />
-         </font>
 
-      </Hyperlink>
-      <Button fx:id="newGameBtn" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="120.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-      <Button fx:id="loadGameBtn" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="26.0" prefWidth="120.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-      <Text fontSmoothingType="LCD" layoutX="211.0" layoutY="89.0" stroke="#208c9e" strokeWidth="2.0" text="ou" textAlignment="CENTER" wrappingWidth="77.60003352165222" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.NewGamePage">
+   <children>
+      <GridPane fx:id="grid" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="800.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="609.6000000000001" minWidth="10.0" prefWidth="211.1999938964844" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="753.4000244140625" minWidth="10.0" prefWidth="342.40000610351564" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="723.8" minWidth="10.0" prefWidth="247.79997558593755" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="126.00000610351563" minHeight="10.0" prefHeight="126.00000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="87.60001220703126" minHeight="10.0" prefHeight="58.79999389648438" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="152.2" />
+         </rowConstraints>
+         <children>
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+            <Text fill="#1c1c43" fontSmoothingType="LCD" layoutX="10.0" layoutY="77.0" stroke="#208c9e" strokeWidth="2.0" text="Our Game" textAlignment="CENTER" wrappingWidth="361.6000487804413" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Text>
+            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font>
+      
+            </Hyperlink>
+            <Button fx:id="newGameBtn" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="120.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button fx:id="loadGameBtn" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="26.0" prefWidth="120.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Text fontSmoothingType="LCD" layoutX="211.0" layoutY="89.0" stroke="#208c9e" strokeWidth="2.0" text="ou" textAlignment="CENTER" wrappingWidth="77.60003352165222" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </GridPane>
    </children>
-</GridPane>
+</AnchorPane>

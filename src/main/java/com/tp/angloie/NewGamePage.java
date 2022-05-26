@@ -87,7 +87,7 @@ public class NewGamePage {
 
                     Main.root.getChildren().clear();
                     try {
-                        Main.root.getChildren().add(fxmlLoader.load());
+                        Main.scene.setRoot(fxmlLoader.load());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -126,7 +126,7 @@ public class NewGamePage {
 
                     Main.root.getChildren().clear();
                     try {
-                        Main.root.getChildren().add(fxmlLoader.load());
+                        Main.scene.setRoot(fxmlLoader.load());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
