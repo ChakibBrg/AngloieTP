@@ -32,16 +32,18 @@ public class Main extends Application {
         fxmlLoader.load();
         NewGamePage np  =fxmlLoader.getController();
         scene = new Scene(np.rootNewGamePage);
-        scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+        Main.scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
 
 
         stage.setMaximized(true);
-
         stage.setTitle("Our Game");
         stage.setScene(scene);
+
         stage.show();
-        stage.centerOnScreen();
         np.start();
+
+        stage.centerOnScreen();
 
 
     }

@@ -18,7 +18,8 @@ abstract public class Case extends StackPane {
         c = new Ellipse();
         c.setStroke(Color.GREY);
         c.setFill(null);
-        c.setStrokeWidth(1);
+        c.setStrokeWidth(2);
+        c.setStroke(Color.WHITE);
         c.setRadiusX(28);
         c.setRadiusY(28);
         this.getChildren().add(c);

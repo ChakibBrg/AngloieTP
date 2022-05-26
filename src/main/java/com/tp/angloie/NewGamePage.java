@@ -16,7 +16,9 @@ import com.tp.angloie.Utilis;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.action.ActionGroup;
@@ -36,7 +38,7 @@ public class NewGamePage {
    @FXML  public Hyperlink Player ;
    @FXML  public AnchorPane rootNewGamePage ;
 
-    public PopOver popup = new PopOver();
+    public Popup popup = new Popup();
     VBox register;
     UserNamePopUp registerCtrl;
     FXMLLoader fxmlLoader;
@@ -52,21 +54,24 @@ public class NewGamePage {
     }
 
     public void showRegisterPop(boolean first) throws IOException {
+
+
+
+        Path path = new Path();
+        path.getStyleClass().add("border"); //$NON-NLS-1$
+        path.setManaged(false);
+
+
         fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
         register = fxmlLoader.load() ;
         registerCtrl = fxmlLoader.getController();
         registerCtrl.newGamePageCtrl= this;
-        popup.setTitle("Sélectionner");
-        popup.setHeaderAlwaysVisible(true);
-        popup.setDetachable(false);
-        popup.setArrowSize(0);
-        popup.setArrowLocation(PopOver.ArrowLocation.TOP_LEFT);
-        popup.setContentNode(register);
-        popup.setCloseButtonEnabled(!first);
-        popup.setAutoHide(false);
+        register.getStyleClass().add("vbox");
+        register.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
         grid.setDisable(true);
-        popup.show(Main.scene.getWindow());
-        popup.centerOnScreen();
+           popup = new Popup();
+            popup.getContent().add(register);
+            popup.show(Main.scene.getWindow());
     }
 //////// Les evenements de la page d'acceuil page Events ///////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +110,7 @@ public class NewGamePage {
     @FXML
     protected void loadGameClick(ActionEvent e) throws IOException {
         ListView<String> savedGames = new ListView<>();
-        PopOver savedPop = new PopOver();
+        Popup savedPop = new Popup();
         StackPane stack = new StackPane();
 
 
@@ -138,18 +143,13 @@ public class NewGamePage {
 
         stack.getChildren().add(savedGames);
         stack.getChildren().add(load);
-        StackPane.setAlignment(load,Pos.BOTTOM_LEFT);
+        StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
 
         savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getParties_sauvegardees().keySet());
-        savedPop.setContentNode(stack);
-        savedPop.setTitle("Charger une partie");
-        savedPop.setArrowLocation(PopOver.ArrowLocation.TOP_CENTER);
-        savedPop.setHeaderAlwaysVisible(true);
-        savedPop.setDetachable(false);
-        savedPop.setArrowSize(0);
+
+
+        savedPop.getContent().add(stack);
         savedPop.show(Main.scene.getWindow());
-        savedPop.centerOnScreen();
-        savedPop.setMaxHeight(500);
 
 
 

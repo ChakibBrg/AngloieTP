@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -42,7 +41,7 @@
                      <Font name="Gabriola" size="34.0" />
                   </font>
                </Text>
-                 <Button fx:id="lancerDe" contentDisplay="CENTER" onAction="#lancerDeClick" prefHeight="58.0" prefWidth="57.0" text="Lancer !" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                 <Button fx:id="lancerDe" contentDisplay="CENTER" onAction="#lancerDeClick" prefHeight="58.0" prefWidth="57.0" text="Go !" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                 <De fx:id="D1" fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                 <De fx:id="D2" fitHeight="59.0" fitWidth="59.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
              </GridPane>
