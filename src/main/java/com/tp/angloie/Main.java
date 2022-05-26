@@ -36,12 +36,13 @@ public class Main extends Application {
 
 
         stage.setMaximized(true);
-
         stage.setTitle("Our Game");
         stage.setScene(scene);
+
         stage.show();
-        stage.centerOnScreen();
         np.start();
+
+        stage.centerOnScreen();
 
 
     }

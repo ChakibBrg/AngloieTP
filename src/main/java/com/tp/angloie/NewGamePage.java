@@ -138,7 +138,7 @@ public class NewGamePage {
 
         stack.getChildren().add(savedGames);
         stack.getChildren().add(load);
-        StackPane.setAlignment(load,Pos.BOTTOM_LEFT);
+        StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
 
         savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getParties_sauvegardees().keySet());
         savedPop.setContentNode(stack);

@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane fx:id="rootNewGamePage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.NewGamePage">
    <children>
       <GridPane fx:id="grid" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -27,7 +26,7 @@
             <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="152.2" />
          </rowConstraints>
          <children>
-         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
@@ -40,7 +39,7 @@
                   <Font size="45.0" />
                </font>
             </Text>
-            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="29.0" />
                </font>
