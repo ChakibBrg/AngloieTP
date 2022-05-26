@@ -13,13 +13,13 @@
    <children>
       <HBox prefHeight="31.0" prefWidth="947.0">
          <children>
-            <TextField fx:id="userNametxt" alignment="CENTER" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Player name" />
-            <Text text="Or" textAlignment="CENTER">
+            <TextField fx:id="userNametxt" alignment="CENTER" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Surnom" />
+            <Text text="Ou" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </HBox.margin>
             </Text>
-            <ComboBox fx:id="userNameCombo" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Choose from existing">
+            <ComboBox fx:id="userNameCombo" maxHeight="30.0" maxWidth="180.0" minHeight="30.0" minWidth="180.0" prefHeight="30.0" prefWidth="180.0" promptText="Choisir un existant">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.NewGamePage">
+<AnchorPane fx:id="rootNewGamePage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.NewGamePage">
    <children>
-      <GridPane fx:id="grid" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="800.0">
+      <GridPane fx:id="grid" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="609.6000000000001" minWidth="10.0" prefWidth="211.1999938964844" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="753.4000244140625" minWidth="10.0" prefWidth="342.40000610351564" />

@@ -34,6 +34,7 @@ public class NewGamePage {
    @FXML  public Button loadGameBtn ;
    @FXML  public GridPane grid ;
    @FXML  public Hyperlink Player ;
+   @FXML  public AnchorPane rootNewGamePage ;
 
     public PopOver popup = new PopOver();
     VBox register;
@@ -42,10 +43,13 @@ public class NewGamePage {
 
     @FXML
     protected void initialize() throws IOException {
+
+    }
+
+    public void start() throws IOException {
         loadGameBtn.setDisable(true);
         showRegisterPop(true);
     }
-
 
     public void showRegisterPop(boolean first) throws IOException {
         fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
@@ -82,10 +86,8 @@ public class NewGamePage {
         fxmlLoader.setLocation(Main.class.getResource("Partie.fxml"));
 
 
-                    Main.stage.setWidth(1300);
-                    Main.stage.setWidth(900);
 
-                    Main.root.getChildren().clear();
+
                     try {
                         Main.scene.setRoot(fxmlLoader.load());
                     } catch (IOException ex) {
@@ -124,7 +126,6 @@ public class NewGamePage {
                     fxmlLoader = new FXMLLoader(Main.class.getResource("Partie.fxml"));
                     fxmlLoader.setController(Main.jeu.getPartieActuelle());
 
-                    Main.root.getChildren().clear();
                     try {
                         Main.scene.setRoot(fxmlLoader.load());
                     } catch (IOException ex) {
