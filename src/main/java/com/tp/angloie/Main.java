@@ -28,8 +28,8 @@ public class Main extends Application {
 
             stage.setTitle("Our Game");
             stage.setScene(scene);
-            stage.setWidth(800);
-            stage.setHeight(600);
+          /*  stage.setWidth(800);
+            stage.setHeight(600);*/
             stage.show();
             stage.centerOnScreen();
 
