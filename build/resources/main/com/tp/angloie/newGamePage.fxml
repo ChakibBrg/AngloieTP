@@ -22,11 +22,12 @@
          <rowConstraints>
             <RowConstraints maxHeight="126.00000610351563" minHeight="10.0" prefHeight="126.00000610351563" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="87.60001220703126" minHeight="10.0" prefHeight="58.79999389648438" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="152.2" />
+            <RowConstraints maxHeight="253.0" minHeight="0.0" prefHeight="53.399993896484375" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="253.0" minHeight="10.0" prefHeight="63.600006103515625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="339.0" minHeight="0.0" prefHeight="90.3999603271485" />
          </rowConstraints>
          <children>
-         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClick" prefHeight="26.0" prefWidth="126.0" text="Quitter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
             <opaqueInsets>
                <Insets />
             </opaqueInsets>
@@ -39,19 +40,32 @@
                   <Font size="45.0" />
                </font>
             </Text>
-            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="29.0" />
                </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
       
             </Hyperlink>
-            <Button fx:id="newGameBtn" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="120.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button fx:id="loadGameBtn" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="26.0" prefWidth="120.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button fx:id="newGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="141.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button fx:id="loadGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="26.0" prefWidth="120.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <Text fontSmoothingType="LCD" layoutX="211.0" layoutY="89.0" stroke="#208c9e" strokeWidth="2.0" text="ou" textAlignment="CENTER" wrappingWidth="77.60003352165222" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
+            <Text fill="#208c9e" fontSmoothingType="LCD" layoutX="352.0" layoutY="160.0" stroke="#208c9e" strokeWidth="0.0" text="Joueur actuel :" textAlignment="CENTER" wrappingWidth="165.60004115104675" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="CLASSEMENT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </GridPane>
    </children>
