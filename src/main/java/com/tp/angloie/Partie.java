@@ -89,6 +89,8 @@ public class Partie implements Serializable {
                         action();
                         posActuelle=posProchaine;
 
+
+
                     }
                     else try {
                         throw new MauvaiseCaseException();
@@ -130,6 +132,7 @@ public class Partie implements Serializable {
     @FXML private void lancerDeClick(ActionEvent e) throws InterruptedException {
         D1.playSound();
         for (int i = 0; i < 20; i++) {
+
                         D1.randomizeImg(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent actionEvent) {
@@ -146,6 +149,8 @@ public class Partie implements Serializable {
                             }
                         });
                     }
+
+
     }
 
 
@@ -153,7 +158,6 @@ public class Partie implements Serializable {
      void action (){
         canMove = false;
          lancerDe.setDisable(false);
-
          AtomicInteger deplacement = new AtomicInteger(0) ;
              do {
                  posProchaine += deplacement.get();
@@ -163,6 +167,9 @@ public class Partie implements Serializable {
              }
              while ( deplacement.get() != 0 );
      }
+
+
+
 
      class MauvaiseCaseException extends Exception {};
 

@@ -7,8 +7,11 @@ import javafx.geometry.VPos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.FontSmoothingType;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -76,10 +79,14 @@ public class Plateau extends GridPane implements Serializable {
         Case tmp= null ;
         tmp=new Depart();
         this.add(tmp,0,0);
+
+        addNum(caseCount,tmp);
+
+
         cases.add(tmp);
         caseCount++;
         incrementIndexes();
-        while ( caseCount != 98 ){
+        while ( caseCount != 99 ){
 
                     if (randomValues.contains(caseCount)){
                         if (tempCases.size()!= 0) {
@@ -95,6 +102,9 @@ public class Plateau extends GridPane implements Serializable {
                     this.add(tmp,j,i);
                     GridPane.setHalignment(tmp, HPos.CENTER);
                     GridPane.setValignment(tmp, VPos.CENTER);
+                    addNum(caseCount,tmp);
+
+
                     cases.add(tmp);
                     incrementIndexes();
                     caseCount ++ ;
@@ -103,7 +113,12 @@ public class Plateau extends GridPane implements Serializable {
                 this.add(tmp,j,i);
                 GridPane.setHalignment(tmp, HPos.CENTER);
                 GridPane.setValignment(tmp, VPos.CENTER);
-                cases.add(tmp);
+
+        addNum(caseCount,tmp);
+
+
+
+        cases.add(tmp);
 
                     imageViewCase= new ImageView();
                     imageViewCase.setFitHeight(50);
@@ -130,6 +145,9 @@ public class Plateau extends GridPane implements Serializable {
         setHeight(600);
 
         QuestionData qst  = null;
+
+        /////////// traitement de questions /////
+
         ArrayList<Case> tempCases = new ArrayList<>();
         for ( int i=0 ; i<5 ;i++){
             tempCases.add(new CaseDefinition(qst));
@@ -145,10 +163,12 @@ public class Plateau extends GridPane implements Serializable {
         Case tmp= null ;
         tmp=new Depart();
         this.add(tmp,0,0);
+        addNum(caseCount,tmp);
+
         cases.add(tmp);
         caseCount++;
         incrementIndexes();
-        while ( caseCount != 98 ){
+        while ( caseCount != 99 ){
             if (randomValues.contains(caseCount)){
                 if (tempCases.size()!= 0) {
                     index = indexes.get(k);
@@ -164,6 +184,8 @@ public class Plateau extends GridPane implements Serializable {
             this.add(tmp,j,i);
             GridPane.setHalignment(tmp, HPos.CENTER);
             GridPane.setValignment(tmp, VPos.CENTER);
+            addNum(caseCount,tmp);
+
             cases.add(tmp);
             incrementIndexes();
             caseCount ++ ;
@@ -172,17 +194,30 @@ public class Plateau extends GridPane implements Serializable {
         this.add(tmp,j,i);
         GridPane.setHalignment(tmp, HPos.CENTER);
         GridPane.setValignment(tmp, VPos.CENTER);
+        addNum(caseCount,tmp);
+
         cases.add(tmp);
 
         imageViewCase= new ImageView();
         imageViewCase.setFitHeight(50);
         imageViewCase.setFitWidth(35);
-        cases.add(tmp);
+
         imageViewCase.setImage(avatar);
         cases.get(Main.jeu.getPartieActuelle().getPosActuelle()).getChildren().add(imageViewCase);
 
     }
 
+
+    private void addNum ( int i , Case tmp){
+        Text num = new Text(Integer.toString(i));
+        num.setTextAlignment(TextAlignment.CENTER);
+        num.setFill(Color.WHITE);
+        num.setFontSmoothingType(FontSmoothingType.LCD);
+        num.setTabSize(3);
+        num.setStrokeWidth(3);
+        tmp.getChildren().add(num);
+
+    }
 
     //////////////////  Animation avatar //////////////////////
     class AnimationAvatar extends AnimationTimer {

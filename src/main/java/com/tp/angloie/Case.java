@@ -52,4 +52,6 @@ abstract public class Case extends StackPane {
 
 
     abstract void action(AtomicInteger points, AtomicInteger deplacement);
+
+
 }

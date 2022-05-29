@@ -3,14 +3,8 @@ package com.tp.angloie;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,7 +23,7 @@ public class Main extends Application {
         if ( jeu == null) jeu  = new Jeu(new HashMap<>(), null ,null);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
 
-        fxmlLoader.load();
+         fxmlLoader.load();
         NewGamePage np  =fxmlLoader.getController();
         scene = new Scene(np.rootNewGamePage);
 

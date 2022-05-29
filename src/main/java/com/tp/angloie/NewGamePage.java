@@ -165,6 +165,7 @@ public class NewGamePage {
         parts.put("saved1",test);
 
         test  = new Partie();
+        test.setPosActurelle(3);
         test.setTitle("saved2");
         parts.put("saved2",test);
 
