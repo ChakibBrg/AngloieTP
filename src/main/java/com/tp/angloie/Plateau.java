@@ -14,6 +14,7 @@ import javafx.scene.text.TextAlignment;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
@@ -27,13 +28,16 @@ public class Plateau extends GridPane implements Serializable {
     private transient int  colHigherBond ;
     private transient int rowHigherBond;
 
-     transient private ArrayList<Case> cases ;
-     private ArrayList<Integer>  randomValues  ;
-     private ArrayList<Integer>  indexes  ;
-     public int i = 0 , j = 0 ;
+    transient private ArrayList<Case> cases ;
+    private ArrayList<Integer>  randomValues  ;
+    private ArrayList<Integer>  indexes  ;
+    public int i = 0 , j = 0 ;
 
-     private transient Image avatar ;
-     private transient ImageView imageViewCase ;
+    private transient Image avatar ;
+    private transient ImageView imageViewCase ;
+
+
+    public transient   AnimationAvatar animAvatar;
 
 
 
@@ -88,31 +92,31 @@ public class Plateau extends GridPane implements Serializable {
         incrementIndexes();
         while ( caseCount != 99 ){
 
-                    if (randomValues.contains(caseCount)){
-                        if (tempCases.size()!= 0) {
-                            index = randGen.nextInt(0, tempCases.size());
-                            indexes.add(index);
-                            tmp = tempCases.get(index);
-                            tempCases.remove(index);
-                        }
-                    }
-                    else{
-                        tmp = new Parcours();
-                    }
-                    this.add(tmp,j,i);
-                    GridPane.setHalignment(tmp, HPos.CENTER);
-                    GridPane.setValignment(tmp, VPos.CENTER);
-                    addNum(caseCount,tmp);
-
-
-                    cases.add(tmp);
-                    incrementIndexes();
-                    caseCount ++ ;
+            if (randomValues.contains(caseCount)){
+                if (tempCases.size()!= 0) {
+                    index = randGen.nextInt(0, tempCases.size());
+                    indexes.add(index);
+                    tmp = tempCases.get(index);
+                    tempCases.remove(index);
                 }
-                tmp=new Fin();
-                this.add(tmp,j,i);
-                GridPane.setHalignment(tmp, HPos.CENTER);
-                GridPane.setValignment(tmp, VPos.CENTER);
+            }
+            else{
+                tmp = new Parcours();
+            }
+            this.add(tmp,j,i);
+            GridPane.setHalignment(tmp, HPos.CENTER);
+            GridPane.setValignment(tmp, VPos.CENTER);
+            addNum(caseCount,tmp);
+
+
+            cases.add(tmp);
+            incrementIndexes();
+            caseCount ++ ;
+        }
+        tmp=new Fin();
+        this.add(tmp,j,i);
+        GridPane.setHalignment(tmp, HPos.CENTER);
+        GridPane.setValignment(tmp, VPos.CENTER);
 
         addNum(caseCount,tmp);
 
@@ -120,15 +124,15 @@ public class Plateau extends GridPane implements Serializable {
 
         cases.add(tmp);
 
-                    imageViewCase= new ImageView();
-                    imageViewCase.setFitHeight(50);
-                    imageViewCase.setFitWidth(35);
-                    imageViewCase.setImage(avatar);
+        imageViewCase= new ImageView();
+        imageViewCase.setFitHeight(50);
+        imageViewCase.setFitWidth(35);
+        imageViewCase.setImage(avatar);
 
-                    cases.get(0).getChildren().add(imageViewCase);
+        cases.get(0).getChildren().add(imageViewCase);
 
 
-
+        startAnim(0,0);
     }
 
     public void createFormSavedValues (){ // creer un plateau en utilisant le tableau sauvegardeé precedemment ( serialisé )
@@ -137,10 +141,10 @@ public class Plateau extends GridPane implements Serializable {
 
         cases = new ArrayList<>();
         i=j=0;
-              colLowerBond = COL_MIN_LOWER_BOUND ;
-              rowLowerBond= ROW_MIN_LOWER_BOUND ;
-              colHigherBond = COL_MAX_HIGHER_BOUND;
-              rowHigherBond= ROW_MAX_HIGHER_BOUND;
+        colLowerBond = COL_MIN_LOWER_BOUND ;
+        rowLowerBond= ROW_MIN_LOWER_BOUND ;
+        colHigherBond = COL_MAX_HIGHER_BOUND;
+        rowHigherBond= ROW_MAX_HIGHER_BOUND;
         setWidth(600);
         setHeight(600);
 
@@ -221,93 +225,144 @@ public class Plateau extends GridPane implements Serializable {
 
     //////////////////  Animation avatar //////////////////////
     class AnimationAvatar extends AnimationTimer {
-        private final int inPos  ; // la case concernée
-        private final int outPos  ; // la case concernée
+
+
+        private  int inPos  ; // la case concernée
+        private  int outPos  ; // la case concernée
+
+        private int  currOut, currIn ;
         private int count=1 ;
+
+
+        private boolean  run  = false ;
 
 
         long previous =0;
 
-            public AnimationAvatar(int inPos,int outPos ){
+        public AnimationAvatar(int inPos,int outPos ){
 
 
-                this.inPos = inPos ;
-                this.outPos = outPos ;
+            this.inPos=this.currIn = inPos ;
+            this.outPos=this.currOut = outPos ;
 
 
-                StackPane.setMargin(imageViewCase,new Insets(0,0,7,0));
+            StackPane.setMargin(imageViewCase,new Insets(0,0,7,0));
 
 
+        }
+
+
+
+
+        public void stop1(){
+            run = false ;
+        }
+
+        public void setInPos(int inPos) {
+            this.inPos = inPos;
+        }
+
+        public void setOutPos(int outPos) {
+            this.outPos = outPos;
+        }
+
+
+        public boolean restart(){
+            count = 1 ;
+            if ( currIn != inPos){
+                currIn = inPos ;
+                currOut= outPos ;
+                return true;
             }
+            else return false ;
+        }
 
         @Override
         public  void handle  ( long current) {
-            if(count == 22 ){
-                cases.get(inPos).getChildren().remove(imageViewCase);
-                cases.get(outPos).getChildren().add(imageViewCase);
-                count++;
-                return;
+            if (run) {
+                if (count == 22) {
+                    cases.get(currIn).getChildren().remove(imageViewCase);
+                    cases.get(currOut).getChildren().add(imageViewCase);
+                    count++;
+                    return;
+                }
+                if (count > 36) {
+                    if ( !restart() ) {
+                        stop1();
+                    }
+                    return ;
+                }
+                if (current - previous > 60) {
+                    if (count >= 10)
+                        imageViewCase.setImage(new Image(getClass().getResourceAsStream("among/g" + count + ".png")));
+                    else imageViewCase.setImage(new Image(getClass().getResourceAsStream("among/g0" + count + ".png")));
+                    count++;
+                    previous = current;
+                }
             }
-            if (count > 35) {
-                stop() ;
-            }
-            if (  current - previous > 60) {
-                if (count >= 10) imageViewCase.setImage( new Image(getClass().getResourceAsStream("among/g"+count+".png")));
-                else imageViewCase.setImage( new Image(getClass().getResourceAsStream("among/g0"+count+".png")));
-                count++;
-                previous = current;
-            }
-            }
-        }
 
-        /// Deplcement de l'avatar sur le plateau
-    public void deplacer(int current  , int dest){
-        new AnimationAvatar(current,dest).start();
+        }
     }
+
+
+    public void startAnim(int curr  , int dest){
+        animAvatar = new AnimationAvatar(curr,dest);
+        animAvatar.start();
+
+    }
+    /// Deplcement de l'avatar sur le plateau
+    public void deplacer(int current  , int dest){
+        animAvatar.run = true ;
+        animAvatar.setInPos(current);
+        animAvatar.setOutPos(dest);
+
+    }
+
+
 
 
 
 /////// Gerer les indice de la grille au cours de la creation du tableau /////////////////////
 
-   public void  incrementIndexes( ){
+    public void  incrementIndexes( ){
 
-    if ( j == colLowerBond && i == rowLowerBond ){
-        colHigherBond -=2; ;
-        j++;
-        return ;
+        if ( j == colLowerBond && i == rowLowerBond ){
+            colHigherBond -=2; ;
+            j++;
+            return ;
 
-    }if ( j == colLowerBond && i == rowHigherBond ){
-        rowLowerBond +=2 ;
-        i--;
-        return;
+        }if ( j == colLowerBond && i == rowHigherBond ){
+            rowLowerBond +=2 ;
+            i--;
+            return;
 
-    }if ( j == colHigherBond && i == rowLowerBond ){
-        rowHigherBond -=2 ;
-        i++;
-        return;
+        }if ( j == colHigherBond && i == rowLowerBond ){
+            rowHigherBond -=2 ;
+            i++;
+            return;
 
-    }if ( j == colHigherBond && i == rowHigherBond ){
-        colLowerBond+=2;
-        j-- ;
-       return;
+        }if ( j == colHigherBond && i == rowHigherBond ){
+            colLowerBond+=2;
+            j-- ;
+            return;
 
-    }
+        }
 
-       if ( i == rowLowerBond ){
-           j++ ;
-           return;
-       }
+        if ( i == rowLowerBond ){
+            j++ ;
+            return;
+        }
         if ( i ==rowHigherBond) {
-           j-- ;
-           return;
-       }
+            j-- ;
+            return;
+        }
         if (j == colLowerBond){
-           i-- ;
-           return;
-       }
+            i-- ;
+            return;
+        }
         if ( j == colHigherBond){
-           i++;
+            i++;
 
-       }
+        }
     }
 }

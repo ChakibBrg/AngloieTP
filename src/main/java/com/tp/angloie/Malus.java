@@ -13,6 +13,7 @@ public class Malus extends Case{
 
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
-
+        points.set(points.get()-10);
+        deplacement.set(-2);
     }
 }

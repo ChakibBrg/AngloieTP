@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Partie implements Serializable {
     private String  title;
     private  int valeurDe;
-    private  int posActuelle ,posProchaine  ;
+    private  int posActuelle=0 ,posProchaine=1  ;
     private AtomicInteger points ;
     private  Plateau plateau;
     private  Boolean canMove = false;
@@ -82,30 +82,34 @@ public class Partie implements Serializable {
         clickEvent = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (canMove && mouseEvent.getTarget() instanceof Ellipse) {
-
-                    if (plateau.getCases().indexOf(((Ellipse) mouseEvent.getTarget()).getParent()) == posProchaine) {
-                        System.out.println("NOICE");
-                        action();
-                        posActuelle=posProchaine;
-
-
-
-                    }
-                    else try {
-                        throw new MauvaiseCaseException();
-                    } catch (MauvaiseCaseException e) {
-                        // afficher le message qui indique le bonne case
-                    }
-
-
-                }
-
-
+             if ( mouseEvent.getTarget() instanceof  Ellipse) {
+                 int clickedPos = plateau.getCases().indexOf(((Ellipse) mouseEvent.getTarget()).getParent());
+                // actionNormale(clickedPos);
+                actionPourDemo(clickedPos);
+             }
             }
         };
     }
+private void actionPourDemo (int clickedPos){
+        posProchaine = clickedPos ;
+        action();
 
+}
+
+private  void actionNormale(int clickedPos){
+        if ( canMove ) {
+            if (clickedPos == posProchaine) {
+                System.out.println("NOICE");
+                action();
+
+            } else try {
+                throw new MauvaiseCaseException();
+            } catch (MauvaiseCaseException e) {
+                // afficher le message qui indique le bonne case
+            }
+        }
+
+}
 
 
     //////////////////////////////////////////////////////
@@ -157,15 +161,25 @@ public class Partie implements Serializable {
     //////// Action a faire apres avoir cliqué sur la bonne case
      void action (){
         canMove = false;
+         plateau.startAnim(posActuelle,posProchaine);
          lancerDe.setDisable(false);
-         AtomicInteger deplacement = new AtomicInteger(0) ;
-             do {
-                 posProchaine += deplacement.get();
+
+        AtomicInteger deplacement = new AtomicInteger(0) ;// le deplacement est la prochaine position
+         do {
+             deplacement.set(0);
+
+
                  plateau.deplacer(posActuelle,posProchaine);
-                 plateau.getCases().get(posActuelle).action(points, deplacement);
+                 plateau.getCases().get(posProchaine).action(points, deplacement);
                  posActuelle=posProchaine;
-             }
-             while ( deplacement.get() != 0 );
+                 if ( posProchaine +  deplacement.get() >99 ){
+                     posProchaine = 200-posProchaine-deplacement.get() ;
+                 }else posProchaine += deplacement.get();
+
+
+
+         }while ( deplacement.get() != 0 );
+
      }
 
 

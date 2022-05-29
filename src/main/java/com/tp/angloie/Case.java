@@ -14,6 +14,9 @@ abstract public class Case extends StackPane {
     protected Ellipse c ;
     Button btn =  null ;
 
+    String message  ;
+
+
     public Case() {
         c = new Ellipse();
         c.setStroke(Color.GREY);

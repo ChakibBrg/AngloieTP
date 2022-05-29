@@ -3,6 +3,7 @@ package com.tp.angloie;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,7 +14,7 @@ public class Main extends Application {
     public static Jeu jeu  ;
     public static Scene scene ;
     public static Stage stage ;
-
+    public static Parent root;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,7 +27,7 @@ public class Main extends Application {
          fxmlLoader.load();
         NewGamePage np  =fxmlLoader.getController();
         scene = new Scene(np.rootNewGamePage);
-
+        root = np.rootNewGamePage;
         Main.scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
 
 
