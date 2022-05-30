@@ -16,7 +16,7 @@ public class Saut extends Case{
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
         Random rand = new Random();
-        deplacement.set( rand.nextInt(1,100) );
-        message= deplacement.get() >0 ?"Avancez":"Reculez"+" avec "+deplacement.get() +" cases ! " ;
+        deplacement.set( rand.nextInt(-100,100) );
+
     }
 }

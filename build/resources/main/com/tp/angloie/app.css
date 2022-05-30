@@ -50,16 +50,21 @@
 
 }
 .popupwindow{
-        -fx-background-radius:1000;
+        -fx-border-radius:1000;
         -fx-border-thickness: 3;
       	-fx-border-color: 'white';
-      	-fx-border-thickness: 3;
       	-fx-text-fill:'white';
       	-fx-background-color:'transparent';
       	-fx-background-opacity:0.5;
 
 }
 
+.label{
+        -fx-border-thickness: 3;
+      	-fx-border-color: 'white';
+      	-fx-border-radius:10;
+      	-fx-padding: 5 5 5 5;
+}
 .text {
  -fx-font-smoothing-type: lcd;
 }

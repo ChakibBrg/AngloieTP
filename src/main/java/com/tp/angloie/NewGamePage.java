@@ -190,7 +190,7 @@ public class NewGamePage {
 
 
 
-    public void classementCLick(ActionEvent r){
+    public void classementClick(ActionEvent r){
 
     }
 }

@@ -6,12 +6,17 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import java.io.Serializable;
 import java.util.Set;
@@ -82,10 +87,10 @@ public class Partie implements Serializable {
         clickEvent = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-             if ( mouseEvent.getTarget() instanceof  Ellipse) {
-                 int clickedPos = plateau.getCases().indexOf(((Ellipse) mouseEvent.getTarget()).getParent());
-                // actionNormale(clickedPos);
-                actionPourDemo(clickedPos);
+             if ( mouseEvent.getTarget() instanceof Ellipse || mouseEvent.getTarget() instanceof Text) {
+                 int clickedPos = plateau.getCases().indexOf(((Shape)mouseEvent.getTarget()).getParent());
+                 if (!demo.isSelected() ) actionNormale(clickedPos);
+                 else actionPourDemo(clickedPos);
              }
             }
         };
@@ -120,12 +125,21 @@ private  void actionNormale(int clickedPos){
     @FXML transient public Text resultTxt ;
     @FXML transient public Button lancerDe ;
     @FXML transient AnchorPane plateauContainer;
+    @FXML transient Label instructionPartie;
+    @FXML transient Label playerNameLabel;
+    @FXML transient Label scoreLabel;
+
+
+    @FXML transient CheckBox demo;
 
 
     @FXML
     void initialize(){
-        resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
 
+
+        playerNameLabel.setText(Main.jeu.getJoueurActuel().getNom());
+        scoreLabel.setText(Integer.toString(points.get()));
+        resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
         plateauContainer.getChildren().add(plateau);
         setClickEventPlateau();
         GridPane.setHalignment(plateauContainer, HPos.CENTER);
@@ -152,9 +166,16 @@ private  void actionNormale(int clickedPos){
                                 resultTxt.setText(Integer.toString(valeurDe));
                                 canMove=true;
                                 lancerDe.setDisable(true);
+                                instructionPartie.setText("Allez à la case "+posProchaine);
+                                if ( posProchaine >99 ){
+                                    int over =  posProchaine -100;
+                                    posProchaine = 100-over ;
+                                    instructionPartie.setText("Allez à la case "+posProchaine);
+                                }
                             }
                         });
                     }
+
 
 
     }
@@ -172,12 +193,23 @@ private  void actionNormale(int clickedPos){
 
 
                  plateau.deplacer(posActuelle,posProchaine);
+                 instructionPartie.setText(plateau.getCases().get(posActuelle).message);
                  plateau.getCases().get(posProchaine).action(points, deplacement);
                  posActuelle=posProchaine;
-                 if ( posProchaine +  deplacement.get() >99 ){
-                     posProchaine = 200-posProchaine-deplacement.get() ;
-                 }else posProchaine += deplacement.get();
-
+                 posProchaine += deplacement.get();
+                 if ( posProchaine <0) posProchaine = 0 ;
+                 if ( posProchaine >99 ){
+                     int over =  posProchaine -100;
+                     posProchaine = 100-over ;
+                     instructionPartie.setText("Allez à la case "+posProchaine);
+                 }
+                if ( plateau.getCases().get(posActuelle) instanceof Saut){
+                    lancerDe.setDisable(true);
+                    instructionPartie.setText("Allez à la case "+posProchaine);
+                    canMove = true;
+                    return ;
+                }
+             scoreLabel.setText(Integer.toString(points.get()));
 
 
          }while ( deplacement.get() != 0 );

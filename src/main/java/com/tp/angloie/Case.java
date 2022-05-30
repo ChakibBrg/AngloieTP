@@ -30,21 +30,22 @@ abstract public class Case extends StackPane {
         this.maxWidth(this.getWidth());
         this.minHeight(this.getHeight());
         this.minWidth(this.getWidth());
+        this.setCursor(Cursor.HAND);
         btn =new Button();
 
 
 
-        c.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        this.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 c.setOpacity(0.5);
             }
         });
-        c.setOnMouseExited(new EventHandler<MouseEvent>() {
+        this.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 c.setOpacity(1);
-                c.setCursor(Cursor.HAND);
+
 
             }
         });
