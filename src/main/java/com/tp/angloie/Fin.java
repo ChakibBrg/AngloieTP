@@ -1,9 +1,11 @@
 package com.tp.angloie;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -28,6 +30,7 @@ public class Fin extends Case{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         victory.getContent().add(sp);
         VictoryPopup controller =  loader.getController();
         sp.getStyleClass().add("stackpane");
@@ -36,6 +39,10 @@ public class Fin extends Case{
 
         controller.popup = victory;
         victory.show(Main.scene.getWindow());
+        FadeTransition fd = new FadeTransition(new Duration(3000),victory.getContent().get(0).getParent());
+        fd.setFromValue(0);
+        fd.setToValue(1);
+        fd.play();
 
 
     }

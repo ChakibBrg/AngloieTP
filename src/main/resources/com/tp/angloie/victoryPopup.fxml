@@ -8,7 +8,6 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="rootPopup" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.VictoryPopup">
    <children>
       <MediaView fitHeight="350.0" fitWidth="580.0" />
@@ -22,17 +21,17 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <Label layoutX="158.0" layoutY="126.0" prefHeight="38.0" prefWidth="118.0" text="Score:">
+                  <Label layoutX="158.0" layoutY="126.0" prefHeight="38.0" prefWidth="118.0" text="Score:" textFill="WHITE">
                      <font>
                         <Font size="29.0" />
                      </font>
                   </Label>
-                  <Label layoutX="155.0" layoutY="169.0" prefHeight="43.0" prefWidth="258.0" text="Record personnel :">
+                  <Label layoutX="155.0" layoutY="169.0" prefHeight="43.0" prefWidth="258.0" text="Record personnel :" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="155.0" layoutY="198.0" prefHeight="43.0" prefWidth="258.0" text="Meilleur score du jeu :">
+                  <Label layoutX="155.0" layoutY="198.0" prefHeight="43.0" prefWidth="258.0" text="Meilleur score du jeu :" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>

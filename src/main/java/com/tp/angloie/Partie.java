@@ -120,6 +120,8 @@ private  void actionNormale(int clickedPos){
     @FXML transient public Text resultTxt ;
     @FXML transient public Button lancerDe ;
     @FXML transient AnchorPane plateauContainer;
+
+
     @FXML
     void initialize(){
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));

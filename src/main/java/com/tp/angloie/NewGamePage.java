@@ -1,6 +1,7 @@
 package com.tp.angloie;
 
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
+import javafx.util.Duration;
 import org.controlsfx.control.PopOver;
 import org.controlsfx.control.action.ActionGroup;
 
@@ -94,11 +96,12 @@ public class NewGamePage {
 
 
                     try {
-                        Main.scene.setRoot(fxmlLoader.load());
+
+                        Utilis.pageTrasition(fxmlLoader.load());
+
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    Main.stage.centerOnScreen();
         }
 
 
@@ -132,11 +135,12 @@ public class NewGamePage {
                     fxmlLoader.setController(Main.jeu.getPartieActuelle());
 
                     try {
-                        Main.scene.setRoot(fxmlLoader.load());
+                        Parent node = fxmlLoader.load();
+                        Utilis.pageTrasition(node);
+
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                    Main.stage.centerOnScreen();
                 }
             }
         });
@@ -181,5 +185,12 @@ public class NewGamePage {
             }
         }
         Platform.exit();
+    }
+
+
+
+
+    public void classementCLick(ActionEvent r){
+
     }
 }

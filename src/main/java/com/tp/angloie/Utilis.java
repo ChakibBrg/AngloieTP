@@ -1,5 +1,12 @@
 package com.tp.angloie;
 
+import javafx.animation.FadeTransition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.util.Duration;
+
 import java.io.*;
 import java.util.HashMap;
 
@@ -18,6 +25,37 @@ public  class Utilis {
 
         }
     }
+
+    public static void pageTrasition(Parent node){
+
+        FadeTransition fd1 =  new FadeTransition(new Duration(1000),Main.scene.getRoot());
+        fd1.setFromValue(1);
+        fd1.setToValue(0);
+
+        fd1.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                FadeTransition fd2 =  new FadeTransition(new Duration(1000),node);
+                fd2.setFromValue(0);
+                fd2.setToValue(1);
+
+                fd2.play();
+                Main.scene.setRoot(node);
+
+            }
+        });
+        fd1.play();
+
+
+
+
+
+
+
+
+    }
+
 
     public static Object readObjectFromFile(String path){
         Object obj   = null ;

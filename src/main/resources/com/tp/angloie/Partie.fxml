@@ -45,22 +45,22 @@
                 <De fx:id="D1" fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                 <De fx:id="D2" fitHeight="59.0" fitWidth="59.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
              </GridPane>
-            <Label fx:id="playerNameLabel" layoutX="24.0" layoutY="23.0" text="Player">
+            <Label fx:id="playerNameLabel" layoutX="24.0" layoutY="23.0" text="Player" textFill="WHITE">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label fx:id="scoreLabel" layoutX="26.0" layoutY="259.0" text="Score">
+            <Label fx:id="scoreLabel" layoutX="26.0" layoutY="259.0" text="Score" textFill="WHITE">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label fx:id="meilleurScoreLabel" layoutX="17.0" layoutY="83.0" text="Meilleur Score">
+            <Label fx:id="meilleurScoreLabel" layoutX="17.0" layoutY="83.0" text="Meilleur Score" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="recordLabel" layoutX="13.0" layoutY="147.0" text="Record du jeu">
+            <Label fx:id="recordLabel" layoutX="13.0" layoutY="147.0" text="Record du jeu" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
