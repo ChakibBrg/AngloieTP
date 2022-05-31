@@ -306,6 +306,7 @@ public class Plateau extends GridPane implements Serializable {
 
 
     public void startAnim(int curr  , int dest){
+        if (curr == dest) return;
         animAvatar = new AnimationAvatar(curr,dest);
         animAvatar.start();
 

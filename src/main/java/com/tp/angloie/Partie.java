@@ -45,12 +45,10 @@ public class Partie implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getTitle() {
         return title;
     }
-
-
-
 
     public int getPosActuelle() {
         return posActuelle;
@@ -78,8 +76,6 @@ public class Partie implements Serializable {
         }
         this.plateau = plateau;
     }
-
-
 
 
     /////// Affecter l'evenement du clique pour le plateau
@@ -189,9 +185,7 @@ private  void actionNormale(int clickedPos){
 
         AtomicInteger deplacement = new AtomicInteger(0) ;// le deplacement est la prochaine position
          do {
-             deplacement.set(0);
-
-
+                 deplacement.set(0);
                  plateau.deplacer(posActuelle,posProchaine);
                  instructionPartie.setText(plateau.getCases().get(posActuelle).message);
                  plateau.getCases().get(posProchaine).action(points, deplacement);
