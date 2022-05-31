@@ -71,11 +71,12 @@ public class NewGamePage {
         register.getStyleClass().add("vbox");
         register.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
         grid.setDisable(true);
-           popup = new Popup();
-            popup.getContent().add(register);
-            popup.show(Main.scene.getWindow());
+        popup = new Popup();
+        popup.getContent().add(register);
+        popup.show(Main.scene.getWindow());
     }
-//////// Les evenements de la page d'acceuil page Events ///////////////////////////////////////////////////////////////////////////
+
+//////// Les evenements de la page d'acceuil///////////////////////////////////////////////////////////////////////////
 
 
     @FXML

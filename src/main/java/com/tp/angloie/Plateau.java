@@ -215,7 +215,7 @@ public class Plateau extends GridPane implements Serializable {
     private void addNum ( int i , Case tmp){
         Text num = new Text(Integer.toString(i));
         num.setTextAlignment(TextAlignment.CENTER);
-        num.setFill(Color.WHITE);
+        num.setFill(Color.GREY);
         num.setFontSmoothingType(FontSmoothingType.LCD);
         num.setTabSize(3);
         num.setStrokeWidth(3);
@@ -306,13 +306,14 @@ public class Plateau extends GridPane implements Serializable {
 
 
     public void startAnim(int curr  , int dest){
-        if (curr == dest) return;
         animAvatar = new AnimationAvatar(curr,dest);
         animAvatar.start();
 
     }
     /// Deplcement de l'avatar sur le plateau
     public void deplacer(int current  , int dest){
+        if (current == dest) return;
+
         animAvatar.run = true ;
         animAvatar.setInPos(current);
         animAvatar.setOutPos(dest);

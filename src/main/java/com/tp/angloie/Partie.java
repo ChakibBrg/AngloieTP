@@ -1,5 +1,6 @@
 package com.tp.angloie;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,9 +16,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+
 import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -86,12 +90,16 @@ public class Partie implements Serializable {
              if ( mouseEvent.getTarget() instanceof Ellipse || mouseEvent.getTarget() instanceof Text) {
                  int clickedPos = plateau.getCases().indexOf(((Shape)mouseEvent.getTarget()).getParent());
                  if (!demo.isSelected() ) actionNormale(clickedPos);
-                 else actionPourDemo(clickedPos);
+                 else {
+                     if (!(plateau.getCases().get(clickedPos) instanceof Parcours)) actionPourDemo(clickedPos);
+                     else actionNormale(clickedPos);
+                 }
              }
             }
         };
     }
 private void actionPourDemo (int clickedPos){
+
         posProchaine = clickedPos ;
         action();
 
@@ -106,7 +114,22 @@ private  void actionNormale(int clickedPos){
             } else try {
                 throw new MauvaiseCaseException();
             } catch (MauvaiseCaseException e) {
-                // afficher le message qui indique le bonne case
+                FadeTransition ft = new FadeTransition();
+                ft.setNode(instructionPartie);
+                ft.setFromValue(1);
+                ft.setCycleCount(2);
+                ft.setToValue(0);
+                ft.setAutoReverse(true);
+                ft.setDuration(new Duration(500));
+                ft.play();
+                instructionPartie.setTextFill(Color.RED);
+                ft.setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        instructionPartie.setTextFill(Color.WHITE);
+
+                    }
+                });
             }
         }
 
@@ -131,8 +154,6 @@ private  void actionNormale(int clickedPos){
 
     @FXML
     void initialize(){
-
-
         playerNameLabel.setText(Main.jeu.getJoueurActuel().getNom());
         scoreLabel.setText(Integer.toString(points.get()));
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
