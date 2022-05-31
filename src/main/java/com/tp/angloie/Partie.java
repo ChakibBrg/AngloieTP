@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -147,13 +148,15 @@ private  void actionNormale(int clickedPos){
     @FXML transient Label instructionPartie;
     @FXML transient Label playerNameLabel;
     @FXML transient Label scoreLabel;
-
-
     @FXML transient CheckBox demo;
 
 
     @FXML
     void initialize(){
+        BoxBlur bb =  new BoxBlur();
+        bb.setHeight(15);
+        bb.setWidth(15);
+
         playerNameLabel.setText(Main.jeu.getJoueurActuel().getNom());
         scoreLabel.setText(Integer.toString(points.get()));
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));

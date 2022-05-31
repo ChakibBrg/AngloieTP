@@ -60,13 +60,18 @@
 }
 
 .label{
-        -fx-border-thickness: 3;
-      	-fx-border-color: 'white';
+
       	-fx-border-radius:10;
       	-fx-padding: 5 5 5 5;
 }
 .text {
  -fx-font-smoothing-type: lcd;
 }
+
+
+.list-cell {
+    -fx-alignment: center;
+}
+
 
 

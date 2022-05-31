@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -121,6 +122,14 @@ public class NewGamePage {
 
         Button load = new Button();
         load.setText("Charger");
+        load.setStyle(" -fx-background-radius:1000;" +
+                "    -fx-text-align: center;" +
+                "-fx-border-radius: 1000;" +
+                "-fx-cursor: hand;" +
+                "-fx-border-color: 'black';" +
+                "-fx-border-thickness: 3;" +
+                "-fx-text-fill:'black';" +
+                "-fx-background-color:'transparent';" );
         load.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -145,13 +154,14 @@ public class NewGamePage {
                 }
             }
         });
-
+        savedGames.setPadding(new Insets(10,10,10,10));
         stack.getChildren().add(savedGames);
         stack.getChildren().add(load);
         StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
+      StackPane.setMargin(load,new Insets(10));
 
         savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getParties_sauvegardees().keySet());
-
+        savedGames.setPrefHeight(300);
 
         savedPop.getContent().add(stack);
         savedPop.show(Main.scene.getWindow());
