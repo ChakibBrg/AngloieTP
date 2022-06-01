@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -99,40 +100,38 @@ public class Partie implements Serializable {
             }
         };
     }
-private void actionPourDemo (int clickedPos){
+    private void actionPourDemo (int clickedPos){
+            posProchaine = clickedPos ;
+            action();
+    }
 
-        posProchaine = clickedPos ;
-        action();
+    private  void actionNormale(int clickedPos){
+            if ( canMove ) {
+                if (clickedPos == posProchaine) {
+                    System.out.println("NOICE");
+                    action();
 
-}
+                } else try {
+                    throw new MauvaiseCaseException();
+                } catch (MauvaiseCaseException e) {
+                    FadeTransition ft = new FadeTransition();
+                    ft.setNode(instructionPartie);
+                    ft.setFromValue(1);
+                    ft.setCycleCount(2);
+                    ft.setToValue(0);
+                    ft.setAutoReverse(true);
+                    ft.setDuration(new Duration(500));
+                    ft.play();
+                    instructionPartie.setTextFill(Color.RED);
+                    ft.setOnFinished(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            instructionPartie.setTextFill(Color.WHITE);
 
-private  void actionNormale(int clickedPos){
-        if ( canMove ) {
-            if (clickedPos == posProchaine) {
-                System.out.println("NOICE");
-                action();
-
-            } else try {
-                throw new MauvaiseCaseException();
-            } catch (MauvaiseCaseException e) {
-                FadeTransition ft = new FadeTransition();
-                ft.setNode(instructionPartie);
-                ft.setFromValue(1);
-                ft.setCycleCount(2);
-                ft.setToValue(0);
-                ft.setAutoReverse(true);
-                ft.setDuration(new Duration(500));
-                ft.play();
-                instructionPartie.setTextFill(Color.RED);
-                ft.setOnFinished(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        instructionPartie.setTextFill(Color.WHITE);
-
-                    }
-                });
+                        }
+                    });
+                }
             }
-        }
 
 }
 
@@ -144,26 +143,27 @@ private  void actionNormale(int clickedPos){
     @FXML transient public De D2 ;
     @FXML transient public Text resultTxt ;
     @FXML transient public Button lancerDe ;
-    @FXML transient AnchorPane plateauContainer;
+    @FXML transient GridPane plateauContainer;
     @FXML transient Label instructionPartie;
     @FXML transient Label playerNameLabel;
     @FXML transient Label scoreLabel;
     @FXML transient CheckBox demo;
-
 
     @FXML
     void initialize(){
         BoxBlur bb =  new BoxBlur();
         bb.setHeight(15);
         bb.setWidth(15);
-
         playerNameLabel.setText(Main.jeu.getJoueurActuel().getNom());
         scoreLabel.setText(Integer.toString(points.get()));
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
         plateauContainer.getChildren().add(plateau);
+
+        GridPane.setHalignment(plateau,HPos.CENTER);
+        GridPane.setValignment(plateau,VPos.CENTER);
+        GridPane.setMargin(plateau,new Insets(50,0,50,420));
         setClickEventPlateau();
-        GridPane.setHalignment(plateauContainer, HPos.CENTER);
-        GridPane.setValignment(plateauContainer, VPos.CENTER);
+
         plateau.setOnMouseClicked(clickEvent);
 
     }
@@ -195,12 +195,7 @@ private  void actionNormale(int clickedPos){
                             }
                         });
                     }
-
-
-
     }
-
-
     //////// Action a faire apres avoir cliqué sur la bonne case
      void action (){
         canMove = false;
@@ -215,19 +210,25 @@ private  void actionNormale(int clickedPos){
                  plateau.getCases().get(posProchaine).action(points, deplacement);
                  posActuelle=posProchaine;
                  posProchaine += deplacement.get();
-                 if ( posProchaine <0) posProchaine = 0 ;
-                 if ( posProchaine >99 ){
-                     int over =  posProchaine -100;
-                     posProchaine = 100-over ;
-                     instructionPartie.setText("Allez à la case "+posProchaine);
-                 }
+
+
+
                 if ( plateau.getCases().get(posActuelle) instanceof Saut){
+                    posProchaine = deplacement.get();
                     lancerDe.setDisable(true);
                     instructionPartie.setText("Allez à la case "+posProchaine);
                     canMove = true;
                     return ;
                 }
-             scoreLabel.setText(Integer.toString(points.get()));
+                 if ( posProchaine >99 ){
+                     int over =  posProchaine -99;
+                     posProchaine = 99-over ;
+                     instructionPartie.setText("Allez à la case "+posProchaine);
+                 }
+
+                if ( posProchaine <0) posProchaine = 0 ; // Si on tombe sur une case malus qui est  la premiere case
+
+                scoreLabel.setText(Integer.toString(points.get()));
 
 
          }while ( deplacement.get() != 0 );

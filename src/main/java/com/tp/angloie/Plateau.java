@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
     private final int COL_MIN_LOWER_BOUND =0 ;
-    private final int COL_MAX_HIGHER_BOUND =15 +1 ;
+    private final int COL_MAX_HIGHER_BOUND =19 +1 ;
     private final int ROW_MIN_LOWER_BOUND =0 ;
     private final int ROW_MAX_HIGHER_BOUND =13 +1 ;
 
@@ -58,8 +58,9 @@ public class Plateau extends GridPane implements Serializable {
         rowHigherBond= ROW_MAX_HIGHER_BOUND;
 
         cases = new ArrayList<>();
-        setWidth(600);
-        setHeight(600);
+
+      /*  setWidth(600);
+        setHeight(600);*/
         randomValues  = new ArrayList<>();
         indexes  = new ArrayList<>();
         Random randGen =  new Random();
@@ -85,7 +86,6 @@ public class Plateau extends GridPane implements Serializable {
         this.add(tmp,0,0);
 
         addNum(caseCount,tmp);
-
 
         cases.add(tmp);
         caseCount++;

@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Parcours extends Case{
     public Parcours() {
         super();
-        c.setFill(Color.LIGHTGREY);
+        c.setFill(Color.WHITESMOKE);
 
     }
 

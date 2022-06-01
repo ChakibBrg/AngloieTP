@@ -16,7 +16,7 @@ public class Saut extends Case{
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
         Random rand = new Random();
-        deplacement.set( rand.nextInt(-100,100) );
+        deplacement.set( rand.nextInt(1,98) );
 
     }
 }
