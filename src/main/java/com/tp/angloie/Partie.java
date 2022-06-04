@@ -24,6 +24,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -42,7 +43,12 @@ public class Partie implements Serializable {
         this.title = "";
         this.posActuelle = 0;
         this.points = new AtomicInteger(0);
-        this.plateau = new Plateau();
+        try {
+            this.plateau = new Plateau();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         posActuelle = 0 ;
         setClickEventPlateau();
         plateau.setOnMouseClicked(clickEvent);

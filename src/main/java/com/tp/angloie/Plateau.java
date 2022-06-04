@@ -11,8 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Screen;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Random;
@@ -36,6 +37,7 @@ public class Plateau extends GridPane implements Serializable {
     private transient Image avatar ;
     private transient ImageView imageViewCase ;
 
+    private transient ArrayList<QuestionData> questions;            // Pour préparer les questions
 
     public transient   AnimationAvatar animAvatar;
 
@@ -48,7 +50,7 @@ public class Plateau extends GridPane implements Serializable {
     }
 
     ////constructeur
-    public Plateau ()  {
+    public Plateau () throws IOException {
 
         avatar = new Image(getClass().getResourceAsStream("among/g01.png"));
 
@@ -58,9 +60,54 @@ public class Plateau extends GridPane implements Serializable {
         rowHigherBond= ROW_MAX_HIGHER_BOUND;
 
         cases = new ArrayList<>();
+        // ajout
+        questions = new ArrayList<QuestionData>();      //Contiendra toutes les questions (image + définition)
+        BufferedReader in = null;
+        File repertoire = null;
+        String ligne, mot, def;
+        Image image;
+        try {
+            repertoire = new File("src/main/resources/com/tp/angloie/Questions/");
+            if (repertoire.isDirectory()) {
+                //On est rentré dans le répertoire Questions
+                File[] sousRépertoires = repertoire.listFiles();
+                for (File question : sousRépertoires) {
+                    //Chaque sous répertoire comportant une question
+                    if (question.isDirectory()) {
+                        File[] fichiers = question.listFiles();
+                        try {
+                            //Accéder au fichier contenant la définition
+                            def = "";
+                            mot = question.getName();       //Le répertoire est nommé directement comme il faut
+                            in = new BufferedReader(new FileReader("src/main/resources/com/tp/angloie/Questions/"+mot+"/"+fichiers[1].getName()));
+                            while ((ligne = in.readLine()) != null) {
+                                def = def + ligne + "\n";           //Récupérer la chaîne contenant la définition
+                            }
+                            image = new Image(getClass().getResourceAsStream("Questions/"+mot+"/"+fichiers[0].getName()));      //Récupérer l'image
+                            questions.add(new QuestionData(mot, def, image));
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        finally {
+                            if (in != null) {
+                                in.close();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-      /*  setWidth(600);
-        setHeight(600);*/
+        ///////////////////
+        setWidth(400);
+
+        //setWidth(Screen.getPrimary().getVisualBounds().getWidth());
+        setHeight(400);
+        //setHeight(Screen.getPrimary().getVisualBounds().getHeight());
         randomValues  = new ArrayList<>();
         indexes  = new ArrayList<>();
         Random randGen =  new Random();
@@ -73,8 +120,8 @@ public class Plateau extends GridPane implements Serializable {
         QuestionData qst  = null;
         ArrayList<Case> tempCases = new ArrayList<>();
         for ( int i=0 ; i<5 ;i++){
-            tempCases.add(new CaseDefinition(qst));
-            tempCases.add(new CaseImage(qst));
+            tempCases.add(new CaseDefinition(questions));
+            tempCases.add(new CaseImage(questions));
             tempCases.add(new Bonus());
             tempCases.add(new Malus());
             tempCases.add(new Saut());
@@ -154,8 +201,8 @@ public class Plateau extends GridPane implements Serializable {
 
         ArrayList<Case> tempCases = new ArrayList<>();
         for ( int i=0 ; i<5 ;i++){
-            tempCases.add(new CaseDefinition(qst));
-            tempCases.add(new CaseImage(qst));
+            tempCases.add(new CaseDefinition(questions));
+            tempCases.add(new CaseImage(questions));
             tempCases.add(new Bonus());
             tempCases.add(new Malus());
             tempCases.add(new Saut());
