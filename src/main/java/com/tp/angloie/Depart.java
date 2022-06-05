@@ -14,5 +14,6 @@ public class Depart extends Case{
 
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
+        deplacement.set(0);
     }
 }

@@ -32,6 +32,9 @@ public class CaseDefinition extends Question{
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
         //Pour avoir une nouvelle question même sur une même case
+        deplacement.set(0);
+        message="Veuillez saisir le mot qui convient çà la définition !";
+        Main.jeu.getPartieActuelle().setInstruction(message);
         Random randGen = new Random();
         int index = randGen.nextInt(0, questionData.size());
         this.qst = questionData.get(index);
@@ -66,12 +69,23 @@ public class CaseDefinition extends Question{
                 if (event.getCode() == event.getCode().ENTER) {
                     event.consume();
                     String motRecup = mot.getText();
-                    if (motRecup.toLowerCase() == qst.getMot()) {
+                    if ( motRecup.toLowerCase().equalsIgnoreCase( qst.getMot()) ) {
                         points.set(points.get()+20);
                         deplacement.set(4);
+                        try {
+                            Main.jeu.getPartieActuelle().setPosPoints(deplacement);
+                        } catch (Partie.caseSautException e) {
+                            e.printStackTrace();
+                        }
+                        Main.jeu.getPartieActuelle().majAvatar(deplacement);
                     }
                     else {
                         points.set(points.get()-10);
+                        try {
+                            Main.jeu.getPartieActuelle().setPosPoints(deplacement);
+                        } catch (Partie.caseSautException e) {
+                            e.printStackTrace();
+                        }
                     }
                     Main.scene.getRoot().setDisable(false);
                     popup.hide();
@@ -83,6 +97,7 @@ public class CaseDefinition extends Question{
         vbox.getChildren().add(mot);
         popup.getContent().add(vbox);
         popup.show(Main.scene.getWindow());
+
 
     }
 

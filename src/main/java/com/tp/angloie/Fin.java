@@ -24,6 +24,7 @@ public class Fin extends Case{
         Popup victory = new Popup();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("victoryPopup.fxml"));
         StackPane sp = null;
+        deplacement.set(0);
 
         try {
             sp = loader.load();

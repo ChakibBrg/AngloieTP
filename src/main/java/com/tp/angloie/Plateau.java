@@ -182,7 +182,7 @@ public class Plateau extends GridPane implements Serializable {
         startAnim(0,0);
     }
 
-    public void createFormSavedValues (){ // creer un plateau en utilisant le tableau sauvegardeé precedemment ( serialisé )
+    public void createFormSavedValues () throws IOException { // creer un plateau en utilisant le tableau sauvegardeé precedemment ( serialisé )
 
         avatar = new Image(getClass().getResourceAsStream("among/g01.png"));
 
@@ -195,8 +195,50 @@ public class Plateau extends GridPane implements Serializable {
         setWidth(600);
         setHeight(600);
 
-        QuestionData qst  = null;
 
+
+
+
+        questions = new ArrayList<QuestionData>();      //Contiendra toutes les questions (image + définition)
+        BufferedReader in = null;
+        File repertoire = null;
+        String ligne, mot, def;
+        Image image;
+        try {
+            repertoire = new File("src/main/resources/com/tp/angloie/Questions/");
+            if (repertoire.isDirectory()) {
+                //On est rentré dans le répertoire Questions
+                File[] sousRépertoires = repertoire.listFiles();
+                for (File question : sousRépertoires) {
+                    //Chaque sous répertoire comportant une question
+                    if (question.isDirectory()) {
+                        File[] fichiers = question.listFiles();
+                        try {
+                            //Accéder au fichier contenant la définition
+                            def = "";
+                            mot = question.getName();       //Le répertoire est nommé directement comme il faut
+                            in = new BufferedReader(new FileReader("src/main/resources/com/tp/angloie/Questions/"+mot+"/"+fichiers[1].getName()));
+                            while ((ligne = in.readLine()) != null) {
+                                def = def + ligne + "\n";           //Récupérer la chaîne contenant la définition
+                            }
+                            image = new Image(getClass().getResourceAsStream("Questions/"+mot+"/"+fichiers[0].getName()));      //Récupérer l'image
+                            questions.add(new QuestionData(mot, def, image));
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        finally {
+                            if (in != null) {
+                                in.close();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         /////////// traitement de questions /////
 
         ArrayList<Case> tempCases = new ArrayList<>();
@@ -303,6 +345,7 @@ public class Plateau extends GridPane implements Serializable {
 
         public void stop1(){
             run = false ;
+            count = 1 ;
         }
 
         public void setInPos(int inPos) {
@@ -329,7 +372,13 @@ public class Plateau extends GridPane implements Serializable {
             if (run) {
                 if (count == 22) {
                     cases.get(currIn).getChildren().remove(imageViewCase);
-                    cases.get(currOut).getChildren().add(imageViewCase);
+                    try {
+                        cases.get(currOut).getChildren().add(imageViewCase);
+                    }
+                    catch(Exception e){
+                        System.out.println("Errrooor");
+                    }
+
                     count++;
                     return;
                 }

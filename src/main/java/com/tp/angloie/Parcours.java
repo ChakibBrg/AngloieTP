@@ -13,5 +13,7 @@ public class Parcours extends Case{
 
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
+        deplacement.set(0);
+
     }
 }

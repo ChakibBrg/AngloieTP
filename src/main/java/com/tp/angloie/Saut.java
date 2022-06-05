@@ -18,5 +18,6 @@ public class Saut extends Case{
         Random rand = new Random();
         deplacement.set( rand.nextInt(1,98) );
 
+
     }
 }

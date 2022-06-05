@@ -203,49 +203,66 @@ public class Partie implements Serializable {
                     }
     }
     //////// Action a faire apres avoir cliqué sur la bonne case
-     void action (){
+    void action (){
         canMove = false;
-         plateau.startAnim(posActuelle,posProchaine);
-         lancerDe.setDisable(false);
+        plateau.startAnim(posActuelle,posProchaine);
+        lancerDe.setDisable(false);
 
         AtomicInteger deplacement = new AtomicInteger(0) ;// le deplacement est la prochaine position
-         do {
-                 deplacement.set(0);
-                 plateau.deplacer(posActuelle,posProchaine);
-                 instructionPartie.setText(plateau.getCases().get(posActuelle).message);
-                 plateau.getCases().get(posProchaine).action(points, deplacement);
-                 posActuelle=posProchaine;
-                 posProchaine += deplacement.get();
+            majAvatar(deplacement);
+    }
 
 
 
-                if ( plateau.getCases().get(posActuelle) instanceof Saut){
-                    posProchaine = deplacement.get();
-                    lancerDe.setDisable(true);
-                    instructionPartie.setText("Allez à la case "+posProchaine);
-                    canMove = true;
-                    return ;
+
+
+
+
+    public void majAvatar( AtomicInteger deplacement){
+            do {
+                plateau.deplacer(posActuelle,posProchaine);
+                plateau.getCases().get(posProchaine).action(points, deplacement);
+                System.out.println(plateau.getCases().get(posProchaine).message);
+
+                try {
+                    setPosPoints(deplacement);
+                }catch (caseSautException e){
+                    return; //aller attendre le clique du joueur
                 }
-                 if ( posProchaine >99 ){
-                     int over =  posProchaine -99;
-                     posProchaine = 99-over ;
-                     instructionPartie.setText("Allez à la case "+posProchaine);
-                 }
 
-                if ( posProchaine <0) posProchaine = 0 ; // Si on tombe sur une case malus qui est  la premiere case
-
-                scoreLabel.setText(Integer.toString(points.get()));
+            }while ( deplacement.get() != 0 );
+        }
 
 
-         }while ( deplacement.get() != 0 );
 
+        public void setInstruction(String msg ){
+            instructionPartie.setText(msg);
+        }
+
+
+     public void setPosPoints ( AtomicInteger deplacement) throws caseSautException{
+
+         posActuelle=posProchaine;
+         posProchaine += deplacement.get();
+         if ( plateau.getCases().get(posActuelle) instanceof Saut){
+             posProchaine = deplacement.get();
+             lancerDe.setDisable(true);
+             instructionPartie.setText("Allez à la case "+posProchaine);
+             canMove = true;
+             throw new caseSautException();
+         }
+         if ( posProchaine >99 ){
+             int over =  posProchaine -99;
+             posProchaine = 99-over ;
+         }
+         if ( posProchaine <0) posProchaine = 0 ; // Si on tombe sur une case malus qui est  la premiere case
+         if ( points.get()<0) points.set(0);
+         scoreLabel.setText(Integer.toString(points.get()));
      }
 
 
-
-
      class MauvaiseCaseException extends Exception {};
-
+     class caseSautException extends Exception{}; // pour attendre le clique de lutilisateur en cas d'une case saut
 
 
 

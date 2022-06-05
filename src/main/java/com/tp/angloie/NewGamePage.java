@@ -136,7 +136,11 @@ public class NewGamePage {
                 String selected = savedGames.getSelectionModel().getSelectedItem();
                 if(!selected.isBlank()) {
                     Main.jeu.setPartieActuelle(Main.jeu.getJoueurActuel().getParties_sauvegardees().get(selected));
-                    Main.jeu.getPartieActuelle().getPlateau().createFormSavedValues();
+                    try {
+                        Main.jeu.getPartieActuelle().getPlateau().createFormSavedValues();
+                    }catch (IOException e ){
+                        System.out.println(e.getMessage());
+                    }
                     savedPop.hide();
 
                     Main.stage.setMaximized(true);

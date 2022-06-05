@@ -49,7 +49,13 @@ public class CaseImage extends Question {
                     //message = "+10 pts";
                     imageView.setStyle("-fx-border-color: green");      //Coulour verte => Correcte
                     points.set(points.get()+10);
-                    deplacement.set(2);
+                    deplacement.set(3);
+                    try {
+                        Main.jeu.getPartieActuelle().setPosPoints(deplacement);
+                    } catch (Partie.caseSautException e) {
+                        e.printStackTrace();
+                    }
+                    Main.jeu.getPartieActuelle().majAvatar(deplacement);
                 }
                 else {
                     imageView.setStyle("-fx-border-color: red");        //Couleur rouge => Fausse
@@ -89,6 +95,10 @@ public class CaseImage extends Question {
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
         //Mettre tout ici permet de générer à chaque action d'autres questions ce qui est pratique
+        deplacement.set(0);
+        message="Veuillez choisir la bonne image !";
+        Main.jeu.getPartieActuelle().setInstruction(message);
+
         Random randGen = new Random();
         int index = randGen.nextInt(0, questionData.size());
         this.qst = questionData.get(index);
@@ -165,7 +175,6 @@ public class CaseImage extends Question {
         popup.setAnchorX(400);
         popup.setAnchorY(600);
         popup.show(Main.scene.getWindow());
-
 
     }
 

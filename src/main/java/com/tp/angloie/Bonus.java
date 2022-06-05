@@ -24,7 +24,12 @@ public class Bonus extends Case{
         label.setTextFill(Color.WHITE);
         popup.getContent().add(label);
         popup.show(Main.scene.getWindow());*/
+
+
+        message="+10 Points!";
+        Main.jeu.getPartieActuelle().setInstruction(message);
+
         points.set(points.get()+10);
-        deplacement.set(2);
+        deplacement.set(3);
     }
 }

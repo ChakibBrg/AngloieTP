@@ -13,7 +13,9 @@ public class Malus extends Case{
 
     @Override
     void action(AtomicInteger points, AtomicInteger deplacement) {
-        message = "-10 pts !";
+        message = "-10 Points!";
+        Main.jeu.getPartieActuelle().setInstruction(message);
+
         points.set(points.get()-10);
         deplacement.set(-2);
     }
