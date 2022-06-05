@@ -22,7 +22,7 @@ abstract public class Case extends StackPane {
         c.setStroke(Color.GREY);
         c.setFill(null);
         c.setStrokeWidth(2);
-        c.setStroke(Color.WHITE);
+        c.setStroke(Color.DARKGRAY);
         c.setRadiusX(28);
         c.setRadiusY(28);
         this.getChildren().add(c);

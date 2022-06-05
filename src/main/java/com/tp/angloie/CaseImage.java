@@ -47,6 +47,10 @@ public class CaseImage extends Question {
             public void handle (MouseEvent mouseEvent) {
                 if (questionData.getMot() == qst.getMot()) {
                     //message = "+10 pts";
+
+                    message="Correcte!";
+                    Main.jeu.getPartieActuelle().setInstruction(message);
+
                     imageView.setStyle("-fx-border-color: green");      //Coulour verte => Correcte
                     points.set(points.get()+10);
                     deplacement.set(3);
@@ -58,6 +62,14 @@ public class CaseImage extends Question {
                     Main.jeu.getPartieActuelle().majAvatar(deplacement);
                 }
                 else {
+                    message="Faux!!";
+                    Main.jeu.getPartieActuelle().setInstruction(message);
+
+                    try {
+                        Main.jeu.getPartieActuelle().setPosPoints(deplacement);
+                    } catch (Partie.caseSautException e) {
+                        e.printStackTrace();
+                    }
                     imageView.setStyle("-fx-border-color: red");        //Couleur rouge => Fausse
                 }
                 //Ajouter une transition pour plustard avant le hide

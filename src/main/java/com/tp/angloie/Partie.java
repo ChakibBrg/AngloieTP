@@ -154,20 +154,36 @@ public class Partie implements Serializable {
     @FXML transient Label playerNameLabel;
     @FXML transient Label scoreLabel;
     @FXML transient CheckBox demo;
+    @FXML transient GridPane infosBar;
 
     @FXML
     void initialize(){
-        BoxBlur bb =  new BoxBlur();
-        bb.setHeight(15);
-        bb.setWidth(15);
+
+
+        infosBar.getStyleClass().add("gridpane");
+        infosBar.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+        plateau.getStyleClass().add("gridpane");
+        plateau.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+        playerNameLabel.getStyleClass().add("instructionLabel");
+        playerNameLabel.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+
+        instructionPartie.getStyleClass().add("instructionLabel");
+        instructionPartie.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
         playerNameLabel.setText(Main.jeu.getJoueurActuel().getNom());
         scoreLabel.setText(Integer.toString(points.get()));
         resultTxt.setText(Integer.toString(D1.getRes() + D2.getRes() + 2));
-        plateauContainer.getChildren().add(plateau);
 
-        GridPane.setHalignment(plateau,HPos.CENTER);
+        GridPane.setHalignment(plateau,HPos.RIGHT);
         GridPane.setValignment(plateau,VPos.CENTER);
-        GridPane.setMargin(plateau,new Insets(50,0,50,420));
+
+        plateauContainer.setPadding(new Insets(20));
+        plateauContainer.add(plateau,1,0);
+
+
         setClickEventPlateau();
 
         plateau.setOnMouseClicked(clickEvent);
@@ -209,7 +225,7 @@ public class Partie implements Serializable {
         lancerDe.setDisable(false);
 
         AtomicInteger deplacement = new AtomicInteger(0) ;// le deplacement est la prochaine position
-            majAvatar(deplacement);
+        majAvatar(deplacement);
     }
 
 

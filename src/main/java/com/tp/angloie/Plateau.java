@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
     private final int COL_MIN_LOWER_BOUND =0 ;
-    private final int COL_MAX_HIGHER_BOUND =19 +1 ;
+    private final int COL_MAX_HIGHER_BOUND =16 +1 ;
     private final int ROW_MIN_LOWER_BOUND =0 ;
     private final int ROW_MAX_HIGHER_BOUND =13 +1 ;
 
@@ -137,6 +137,8 @@ public class Plateau extends GridPane implements Serializable {
         cases.add(tmp);
         caseCount++;
         incrementIndexes();
+        incrementIndexes();
+
         while ( caseCount != 99 ){
 
             if (randomValues.contains(caseCount)){
@@ -345,7 +347,6 @@ public class Plateau extends GridPane implements Serializable {
 
         public void stop1(){
             run = false ;
-            count = 1 ;
         }
 
         public void setInPos(int inPos) {
@@ -358,10 +359,10 @@ public class Plateau extends GridPane implements Serializable {
 
 
         public boolean restart(){
-            count = 1 ;
             if ( currIn != inPos){
                 currIn = inPos ;
                 currOut= outPos ;
+                count = 1 ;
                 return true;
             }
             else return false ;
@@ -410,9 +411,11 @@ public class Plateau extends GridPane implements Serializable {
     public void deplacer(int current  , int dest){
         if (current == dest) return;
 
-        animAvatar.run = true ;
         animAvatar.setInPos(current);
         animAvatar.setOutPos(dest);
+        animAvatar.run = true ;
+
+
 
     }
 

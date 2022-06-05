@@ -40,14 +40,17 @@
 
 }
 .stackpane{
-        -fx-background-radius:1000;
         -fx-border-thickness: 3;
       	-fx-border-color: 'white';
-      	-fx-border-thickness: 3;
       	-fx-text-fill:'white';
       	-fx-background-color:'transparent';
       	-fx-background-opacity:0.5;
 
+}
+.gridpane{
+        -fx-border-radius:30;
+        -fx-border-thickness: 3;
+      	-fx-border-color: 'white';
 }
 .popupwindow{
         -fx-border-radius:1000;
@@ -59,9 +62,18 @@
 
 }
 
+.instructionLabel{
+
+      	-fx-border-radius:10;
+      	-fx-border-thickness:3;
+      	-fx-border-color:white;
+      	-fx-padding: 5 5 5 5;
+}
 .label{
 
       	-fx-border-radius:10;
+
+
       	-fx-padding: 5 5 5 5;
 }
 .text {

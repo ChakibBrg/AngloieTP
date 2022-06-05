@@ -70,6 +70,10 @@ public class CaseDefinition extends Question{
                     event.consume();
                     String motRecup = mot.getText();
                     if ( motRecup.toLowerCase().equalsIgnoreCase( qst.getMot()) ) {
+
+                        message="Correcte!";
+                        Main.jeu.getPartieActuelle().setInstruction(message);
+
                         points.set(points.get()+20);
                         deplacement.set(4);
                         try {
@@ -80,6 +84,9 @@ public class CaseDefinition extends Question{
                         Main.jeu.getPartieActuelle().majAvatar(deplacement);
                     }
                     else {
+
+                        message="Faux!";
+                        Main.jeu.getPartieActuelle().setInstruction(message);
                         points.set(points.get()-10);
                         try {
                             Main.jeu.getPartieActuelle().setPosPoints(deplacement);
