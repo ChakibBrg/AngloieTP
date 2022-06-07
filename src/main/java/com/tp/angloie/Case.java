@@ -23,8 +23,9 @@ abstract public class Case extends StackPane {
         c.setFill(null);
         c.setStrokeWidth(2);
         c.setStroke(Color.DARKGRAY);
-        c.setRadiusX(28);
-        c.setRadiusY(28);
+         double radius = Main.scene.getHeight()/30 ;
+        c.setRadiusX(radius);
+        c.setRadiusY(radius);
         this.getChildren().add(c);
         this.maxHeight(this.getHeight());
         this.maxWidth(this.getWidth());

@@ -20,9 +20,9 @@ import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
     private final int COL_MIN_LOWER_BOUND =0 ;
-    private final int COL_MAX_HIGHER_BOUND =15 +1 ;
+    private final int COL_MAX_HIGHER_BOUND =14 +1 ;
     private final int ROW_MIN_LOWER_BOUND =0 ;
-    private final int ROW_MAX_HIGHER_BOUND =13 +1 ;
+    private final int ROW_MAX_HIGHER_BOUND =14 +1 ;
 
     private transient int colLowerBond  ;
     private transient int rowLowerBond ;
@@ -137,7 +137,6 @@ public class Plateau extends GridPane implements Serializable {
         cases.add(tmp);
         caseCount++;
         incrementIndexes();
-        incrementIndexes();
 
         while ( caseCount != 99 ){
 
@@ -178,17 +177,21 @@ public class Plateau extends GridPane implements Serializable {
         GridPane.setRowSpan(spaceShip,3);
         GridPane.setColumnSpan(spaceShip,4);
 
-        spaceShip.setFitHeight(100);
-        spaceShip.setFitWidth(100);
+        spaceShip.setFitHeight(200);
+        spaceShip.setFitWidth(200);
 
-        this.add(spaceShip,j,i-3);
+        //this.add(spaceShip,j+1,i-1);
 
 
         cases.add(tmp);
 
         imageViewCase= new ImageView();
-        imageViewCase.setFitHeight(50);
-        imageViewCase.setFitWidth(35);
+
+        double radius = Main.scene.getHeight()/30 ;
+
+        imageViewCase.setFitHeight(radius +16);
+        imageViewCase.setFitWidth(radius * ( (double)35/(double)50)+12);
+
         imageViewCase.setImage(avatar);
 
         cases.get(0).getChildren().add(imageViewCase);
@@ -441,7 +444,10 @@ public class Plateau extends GridPane implements Serializable {
     public void  incrementIndexes( ){
 
 
-
+        if ( i == 13 && j == 13){
+            j-- ;
+            return;
+        }
 
         if ( j == colLowerBond && i == rowLowerBond ){
             colHigherBond -=2; ;
