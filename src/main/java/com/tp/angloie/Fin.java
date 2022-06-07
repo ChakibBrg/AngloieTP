@@ -1,10 +1,12 @@
 package com.tp.angloie;
 
 import javafx.animation.FadeTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Popup;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -22,9 +24,16 @@ public class Fin extends Case{
         message="Tu as gagné !";
         Main.scene.getRoot().setDisable(true);
         Popup victory = new Popup();
+            victory.setHideOnEscape(false);
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("victoryPopup.fxml"));
         StackPane sp = null;
         deplacement.set(0);
+
+        if ( Main.jeu.getJoueurActuel().getMeilleurScore() < points.get()){
+            Main.jeu.getJoueurActuel().setMeilleurScore(points.get());
+        }if ( Joueur.getMeilleurRecord() < points.get()){
+            Joueur.setMeilleurRecord(points.get());
+        }
 
         try {
             sp = loader.load();

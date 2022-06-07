@@ -40,7 +40,7 @@
                   <Font size="45.0" />
                </font>
             </Text>
-            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="#32615f" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Hyperlink fx:id="Player" layoutX="440.0" layoutY="118.0" onAction="#userNameClick" text="Player" textFill="WHITE" underline="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="29.0" />
                </font>
@@ -49,19 +49,19 @@
                </GridPane.margin>
       
             </Hyperlink>
-            <Button fx:id="newGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newGameClick" prefHeight="26.0" prefWidth="141.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button fx:id="loadGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="26.0" prefWidth="120.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button fx:id="newGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#newGameClick" prefHeight="62.0" prefWidth="156.0" text="Nouvelle partie" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Button fx:id="loadGameBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadGameClick" prefHeight="62.0" prefWidth="156.0" text="Charger une partie" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <Text fontSmoothingType="LCD" layoutX="211.0" layoutY="89.0" stroke="#208c9e" strokeWidth="2.0" text="ou" textAlignment="CENTER" wrappingWidth="77.60003352165222" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text fill="#208c9e" fontSmoothingType="LCD" layoutX="352.0" layoutY="160.0" stroke="#208c9e" strokeWidth="0.0" text="Joueur actuel :" textAlignment="CENTER" wrappingWidth="165.60004115104675" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <Text fill="#26bdd4" fontSmoothingType="LCD" layoutX="352.0" layoutY="160.0" stroke="#208c9e" strokeWidth="0.0" text="Joueur actuel :" textAlignment="CENTER" wrappingWidth="165.60004115104675" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font size="22.0" />
                </font>
             </Text>
-            <Button onAction="#classementClick" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="CLASSEMENT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#classementClick" prefHeight="48.0" prefWidth="130.0" text="CLASSEMENT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

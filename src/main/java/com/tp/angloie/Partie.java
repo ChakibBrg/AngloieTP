@@ -4,6 +4,7 @@ import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -22,6 +24,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -37,7 +41,8 @@ public class Partie implements Serializable {
     private  Plateau plateau;
     private  Boolean canMove = false;
     private Set<Integer> cases_visitees;
-    private  transient   EventHandler<MouseEvent> clickEvent = null  ;
+    private transient   EventHandler<MouseEvent> clickEvent = null  ;
+    private transient EventHandler<KeyEvent> exitEvent=null;
 
     public Partie (){
         this.title = "";
@@ -50,8 +55,10 @@ public class Partie implements Serializable {
             e.printStackTrace();
         }
         posActuelle = 0 ;
-        setClickEventPlateau();
-        plateau.setOnMouseClicked(clickEvent);
+
+
+
+
     }
 
     public void setTitle(String title) {
@@ -106,6 +113,42 @@ public class Partie implements Serializable {
             }
         };
     }
+    public void setExitEvent() {
+        exitEvent = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == event.getCode().ESCAPE) {
+                    //Main.stage.close();
+                    Main.scene.getRoot().setDisable(true);
+                    Popup quitter = new Popup();
+                    quitter.setHideOnEscape(false);
+
+                    FXMLLoader loader = new FXMLLoader(Main.class.getResource("ExitPopUp.fxml"));
+                    StackPane sp = null;
+
+                    try {
+                        sp = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    quitter.getContent().add(sp);
+                    ExitPopUp controller =  loader.getController();
+                    sp.getStyleClass().add("stackpane");
+                    sp.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+                    controller.popup = quitter;
+                    quitter.show(Main.scene.getWindow());
+                    FadeTransition fd = new FadeTransition(new Duration(1000),quitter.getContent().get(0).getParent());
+                    fd.setFromValue(0);
+                    fd.setToValue(1);
+                    fd.play();
+                }
+
+            }
+        };
+    }
+
     private void actionPourDemo (int clickedPos){
             posProchaine = clickedPos ;
             action();
@@ -187,6 +230,11 @@ public class Partie implements Serializable {
         setClickEventPlateau();
 
         plateau.setOnMouseClicked(clickEvent);
+
+        setExitEvent();
+        plateauContainer.setOnKeyPressed(exitEvent);
+
+
 
     }
 

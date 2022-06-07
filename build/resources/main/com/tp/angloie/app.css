@@ -3,6 +3,9 @@
 
 }
 
+
+
+
 .button {
     -fx-background-radius:1000;
     -fx-text-align: center;
@@ -14,6 +17,7 @@
 	-fx-background-color:'transparent';
 	-fx-color:'transparent';
 }
+
 .button:hover{
     -fx-text-align: center;
 
@@ -39,14 +43,7 @@
       	-fx-background-opacity:0.5;
 
 }
-.stackpane{
-        -fx-border-thickness: 3;
-      	-fx-border-color: 'white';
-      	-fx-text-fill:'white';
-      	-fx-background-color:'transparent';
-      	-fx-background-opacity:0.5;
 
-}
 .gridpane{
         -fx-border-radius:30;
         -fx-border-thickness: 3;
@@ -61,12 +58,29 @@
       	-fx-background-opacity:0.5;
 
 }
+.stackpane{
+        -fx-background-radius:1000;
+        -fx-border-thickness: 3;
+      	-fx-border-color: 'white';
+      	-fx-border-thickness: 3;
+      	-fx-text-fill:'white';
+      	-fx-background-color:'transparent';
+      	-fx-background-opacity:0.5;
 
+}
 .instructionLabel{
 
       	-fx-border-radius:10;
       	-fx-border-thickness:3;
       	-fx-border-color:white;
+      	-fx-padding: 5 5 5 5;
+}
+.classement{
+
+      	-fx-border-radius:10;
+      	-fx-border-thickness:3;
+      	-fx-border-color:black;
+      	-fx-font-size:25;
       	-fx-padding: 5 5 5 5;
 }
 .label{

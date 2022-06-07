@@ -9,6 +9,7 @@ import javafx.util.Duration;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public  class Utilis {
     public static  void writeObjectTofile(String path , Object obj){
@@ -70,7 +71,7 @@ public  class Utilis {
             System.out.println("Deserialized");
 
         } catch (IOException | ClassNotFoundException ex) {
-            return new Jeu(new HashMap<>(),null,null);
+            return new Jeu(new TreeMap<>(),null,null);
         }
 
         return obj ;

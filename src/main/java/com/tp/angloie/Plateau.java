@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class Plateau extends GridPane implements Serializable {
     private final int COL_MIN_LOWER_BOUND =0 ;
-    private final int COL_MAX_HIGHER_BOUND =16 +1 ;
+    private final int COL_MAX_HIGHER_BOUND =15 +1 ;
     private final int ROW_MIN_LOWER_BOUND =0 ;
     private final int ROW_MAX_HIGHER_BOUND =13 +1 ;
 
@@ -169,6 +169,19 @@ public class Plateau extends GridPane implements Serializable {
 
         addNum(caseCount,tmp);
 
+
+        ImageView spaceShip  = new ImageView();
+        spaceShip.setImage( new Image(De.class.getResourceAsStream("among/spaceShip.png")));
+
+
+
+        GridPane.setRowSpan(spaceShip,3);
+        GridPane.setColumnSpan(spaceShip,4);
+
+        spaceShip.setFitHeight(100);
+        spaceShip.setFitWidth(100);
+
+        this.add(spaceShip,j,i-3);
 
 
         cases.add(tmp);
@@ -426,6 +439,9 @@ public class Plateau extends GridPane implements Serializable {
 /////// Gerer les indice de la grille au cours de la creation du tableau /////////////////////
 
     public void  incrementIndexes( ){
+
+
+
 
         if ( j == colLowerBond && i == rowLowerBond ){
             colHigherBond -=2; ;

@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Main extends Application {
     public static Jeu jeu  ;
@@ -21,7 +22,7 @@ public class Main extends Application {
 
         Main.stage =stage;
         jeu = (Jeu) Utilis.readObjectFromFile("Context.ser");
-        if ( jeu == null) jeu  = new Jeu(new HashMap<>(), null ,null);
+        if ( jeu == null) jeu  = new Jeu(new TreeMap<>(), null ,null);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
 
          fxmlLoader.load();
@@ -29,6 +30,7 @@ public class Main extends Application {
         scene = new Scene(np.rootNewGamePage);
         root = np.rootNewGamePage;
         Main.scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
 
 
         stage.setMaximized(true);

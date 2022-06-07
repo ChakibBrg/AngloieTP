@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="rootPopup" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tp.angloie.ExitPopUp">
+   <children>
+      <MediaView fitHeight="350.0" fitWidth="580.0" />
+      <VBox maxHeight="348.0" maxWidth="582.0" minHeight="200.0" minWidth="465.0" prefHeight="348.0" prefWidth="582.0" />
+      <AnchorPane prefHeight="354.0" prefWidth="582.0">
+         <children>
+            <Button fx:id="closeButton" layoutX="215.0" layoutY="248.0" mnemonicParsing="false" onAction="#Sauvegarder" prefHeight="37.0" prefWidth="151.0" text="Sauvegarder la partie" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="172.0" prefHeight="102.0" prefWidth="238.0" text="Quitter ?" textFill="#e5cd49">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Button layoutX="215.0" layoutY="174.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="151.0" text="Revenir au menu principal " />
+            <Button layoutX="215.0" layoutY="102.0" mnemonicParsing="false" onAction="#reprendre" prefHeight="37.0" prefWidth="151.0" text="Reprendre la partie" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

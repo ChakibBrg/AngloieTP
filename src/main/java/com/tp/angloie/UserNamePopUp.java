@@ -2,15 +2,12 @@ package com.tp.angloie;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import org.controlsfx.control.PopOver;
 
 import java.io.IOException;
 import java.util.HashMap;
-import javafx.scene.image.* ;
+
 public class UserNamePopUp {
     public NewGamePage newGamePageCtrl ;
 
@@ -31,8 +28,8 @@ public class UserNamePopUp {
                     Main.jeu.setJoueurActuel(Main.jeu.getJoueurs().get(userNametxt.getText()));
                 }
                 else{
-                    Joueur nouvJoueur  = new Joueur(userNametxt.getText(),0,null,false,null);
-                    Main.jeu.getJoueurs().put(userNametxt.getText(),new Joueur(userNametxt.getText(),0,null,false,null) );
+                    Joueur nouvJoueur  = new Joueur(userNametxt.getText(),0,new HashMap<>());
+                    Main.jeu.getJoueurs().put(userNametxt.getText(),nouvJoueur );
                     Main.jeu.setJoueurActuel(nouvJoueur);
                     if (Main.jeu  != null ) userNameCombo.getItems().addAll(Main.jeu.getJoueurs().keySet());
 
@@ -40,7 +37,7 @@ public class UserNamePopUp {
                 newGamePageCtrl.popup.hide();
                 newGamePageCtrl.grid.setDisable(false);
                 newGamePageCtrl.Player.setText(userNametxt.getText());
-                newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getParties_sauvegardees() == null);
+                newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getPartiesSauvegardees().size() == 0);
             }else{
                 if ( userNameCombo.getValue()!= null){
 
@@ -48,7 +45,7 @@ public class UserNamePopUp {
                     newGamePageCtrl.popup.hide();
                     newGamePageCtrl.grid.setDisable(false);
                     newGamePageCtrl.Player.setText(userNameCombo.getValue());
-                    newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getParties_sauvegardees() == null);
+                    newGamePageCtrl.loadGameBtn.setDisable(Main.jeu.getJoueurActuel().getPartiesSauvegardees().size() == 0);
 
                 }
 

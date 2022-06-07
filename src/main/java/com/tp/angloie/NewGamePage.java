@@ -1,11 +1,7 @@
 package com.tp.angloie;
 
 
-import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,21 +10,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import com.tp.angloie.Utilis;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Path;
-import javafx.scene.text.Text;
 import javafx.stage.Popup;
-import javafx.stage.PopupWindow;
-import javafx.util.Duration;
-import org.controlsfx.control.PopOver;
-import org.controlsfx.control.action.ActionGroup;
 
 import java.io.IOException;
-import java.io.NotSerializableException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NewGamePage {
@@ -48,7 +34,9 @@ public class NewGamePage {
 
     @FXML
     protected void initialize() throws IOException {
-
+        if( Main.jeu.getJoueurActuel() != null) {
+            if (Main.jeu.getJoueurActuel().getPartiesSauvegardees().size() != 0) loadGameBtn.setDisable(false);
+        }
     }
 
     public void start() throws IOException {
@@ -86,40 +74,23 @@ public class NewGamePage {
     }
     @FXML
     protected void newGameClick(ActionEvent e){
-
-
         Partie controller = new Partie() ;
         Main.jeu.setPartieActuelle(controller);
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setController(Main.jeu.getPartieActuelle());
         fxmlLoader.setLocation(Main.class.getResource("Partie.fxml"));
-
-
-
-
                     try {
-
                         Utilis.pageTrasition(fxmlLoader.load());
-
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
         }
-
-
-
-
-
-
 
     @FXML
     protected void loadGameClick(ActionEvent e) throws IOException {
         ListView<String> savedGames = new ListView<>();
         Popup savedPop = new Popup();
         StackPane stack = new StackPane();
-
-
-
         Button load = new Button();
         load.setText("Charger");
         load.setStyle(" -fx-background-radius:1000;" +
@@ -135,7 +106,7 @@ public class NewGamePage {
             public void handle(ActionEvent actionEvent) {
                 String selected = savedGames.getSelectionModel().getSelectedItem();
                 if(!selected.isBlank()) {
-                    Main.jeu.setPartieActuelle(Main.jeu.getJoueurActuel().getParties_sauvegardees().get(selected));
+                    Main.jeu.setPartieActuelle(Main.jeu.getJoueurActuel().getPartiesSauvegardees().get(selected));
                     try {
                         Main.jeu.getPartieActuelle().getPlateau().createFormSavedValues();
                     }catch (IOException e ){
@@ -164,7 +135,7 @@ public class NewGamePage {
         StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
       StackPane.setMargin(load,new Insets(10));
 
-        savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getParties_sauvegardees().keySet());
+        savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getPartiesSauvegardees().keySet());
         savedGames.setPrefHeight(300);
 
         savedPop.getContent().add(stack);
@@ -188,7 +159,7 @@ public class NewGamePage {
         test.setTitle("saved2");
         parts.put("saved2",test);
 
-        Joueur p1 = new Joueur("Chakib",511,parts,false,null);
+        Joueur p1 = new Joueur("Chakib",511,parts);
 
         Main.jeu.getJoueurs().put(p1.getNom(), p1);
 
@@ -206,6 +177,59 @@ public class NewGamePage {
 
 
     public void classementClick(ActionEvent r){
+
+
+        ListView<String> leaderboard = new ListView<>();
+        Popup savedPop = new Popup();
+        StackPane stack = new StackPane();
+        Label title = new Label("Classement");
+
+        title.getStyleClass().add("classement");
+        title.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+
+
+
+        stack.setStyle(" -fx-background-color:white;");
+        Button load = new Button();
+        load.setText("Fermer");
+        load.setStyle(" -fx-background-radius:1000;" +
+                "    -fx-text-align: center;" +
+                "-fx-border-radius: 1000;" +
+                "-fx-cursor: hand;" +
+                "-fx-border-color: 'black';" +
+                "-fx-border-thickness: 3;" +
+                "-fx-text-fill:'black';" +
+                "-fx-background-color:'transparent';" );
+        load.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                savedPop.hide();
+            }
+        });
+
+        leaderboard.setPadding(new Insets(20,10,10,10));
+        leaderboard.setEditable(false);
+
+        stack.getChildren().add(leaderboard);
+        stack.getChildren().add(load);
+        stack.getChildren().add(title);
+
+
+
+        StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
+        StackPane.setMargin(load,new Insets(15));
+
+        StackPane.setAlignment(title,Pos.TOP_CENTER);
+        StackPane.setMargin(title,new Insets(15));
+
+
+        StackPane.setMargin(leaderboard,new Insets(70,60,60,60));
+
+        leaderboard.getItems().setAll(Main.jeu.classerJoueurs());
+        leaderboard.setPrefHeight(500);
+        leaderboard.setPrefWidth(300);
+        savedPop.getContent().add(stack);
+        savedPop.show(Main.scene.getWindow());
 
     }
 }

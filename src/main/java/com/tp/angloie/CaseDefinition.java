@@ -1,7 +1,10 @@
 package com.tp.angloie;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -33,7 +36,7 @@ public class CaseDefinition extends Question{
     void action(AtomicInteger points, AtomicInteger deplacement) {
         //Pour avoir une nouvelle question même sur une même case
         deplacement.set(0);
-        message="Veuillez saisir le mot qui convient çà la définition !";
+        message="Veuillez saisir le mot qui convient à la définition !";
         Main.jeu.getPartieActuelle().setInstruction(message);
         Random randGen = new Random();
         int index = randGen.nextInt(0, questionData.size());
@@ -49,7 +52,23 @@ public class CaseDefinition extends Question{
         Text definition = new Text(qst.getDef());
         definition.setFill(Color.WHITE);
         definition.setFont(Font.font("Verdana", 15));
+        definition.setWrappingWidth(700);
         TextField mot = new TextField(motCache);
+        mot.setAlignment(Pos.CENTER);
+
+ ///////////////////// limité le length  du texte  ////////////
+        ////////////////////////////////////////////////////
+
+        mot.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (mot.getText().length() > taille) {
+                    String s = mot.getText().substring(0, taille);
+                    mot.setText(s);
+                }
+            }
+        });
+
         //mot.setMaxSize(taille, taille);
         mot.setFont(Font.font("Verdana", 12));
         //Event related with text field

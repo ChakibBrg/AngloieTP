@@ -1,83 +1,60 @@
 package com.tp.angloie;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class Joueur implements Serializable {
-    public static int meilleur_record;
+    private static int meilleurRecord;
 
     private String nom;
-    private int meilleur_score;
-    private HashMap<String,Partie> parties_sauvegardees;
-    private boolean arret;
+    private int meilleurScore;
+    private HashMap<String,Partie> partiesSauvegardees;
 
-    public Joueur(String nom, int meilleur_score, HashMap<String,Partie> parties_sauvegardees, boolean arret, Set<Integer> cases_visitees) {
+    public Joueur(String nom, int meilleurScore, HashMap<String, Partie> partiesSauvegardees) {
         this.nom = nom;
-        this.meilleur_score = meilleur_score;
-        this.parties_sauvegardees = parties_sauvegardees;
-        this.arret = arret;
+        this.meilleurScore = meilleurScore;
+        this.partiesSauvegardees = partiesSauvegardees;
+
 
     }
 
-    public static int getMeilleur_record() {
-        return meilleur_record;
+    public static int getMeilleurRecord() {
+        return meilleurRecord;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public int getMeilleur_score() {
-        return meilleur_score;
+    public int getMeilleurScore() {
+        return meilleurScore;
     }
 
-    public HashMap<String,Partie> getParties_sauvegardees() {
-        return parties_sauvegardees;
+    public HashMap<String,Partie> getPartiesSauvegardees() {
+        return partiesSauvegardees;
     }
 
-    public boolean isArret() {
-        return arret;
-    }
-
-
-
-    public static void setMeilleur_record(int meilleur_record) {
-        Joueur.meilleur_record = meilleur_record;
+    public static void setMeilleurRecord(int meilleurRecord) {
+        Joueur.meilleurRecord = meilleurRecord;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public void setMeilleur_score(int meilleur_score) {
-        this.meilleur_score = meilleur_score;
+    public void setMeilleurScore(int meilleur_score) {
+        this.meilleurScore = meilleur_score;
     }
 
-    public void setParties_sauvegardees(HashMap<String,Partie> parties_sauvegardees) {
-        this.parties_sauvegardees = parties_sauvegardees;
+    public void setPartiesSauvegardees(HashMap<String,Partie> partiesSauvegardees) {
+        this.partiesSauvegardees = partiesSauvegardees;
     }
 
-    public void setArret(boolean arret) {
-        this.arret = arret;
-    }
-
-
-
-    public void deplacer (int deplacement) {
-
-    }
-
-    public void majPts () {
-
-    }
-
-    public void arreter () {
-        arret = true;
-    }
 
     public void sauvegarderPartie (Partie partie) {
-        parties_sauvegardees.put(partie.getTitle() , partie);
+        partiesSauvegardees.put(partie.getTitle() , partie);
     }
+
+
+
 }
