@@ -36,6 +36,7 @@ public class NewGamePage {
     protected void initialize() throws IOException {
         if( Main.jeu.getJoueurActuel() != null) {
             if (Main.jeu.getJoueurActuel().getPartiesSauvegardees().size() != 0) loadGameBtn.setDisable(false);
+            Player.setText(Main.jeu.getJoueurActuel().getNom());
         }
     }
 
@@ -60,7 +61,9 @@ public class NewGamePage {
         register.getStyleClass().add("vbox");
         register.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
         grid.setDisable(true);
+
         popup = new Popup();
+        popup.setHideOnEscape(false);
         popup.getContent().add(register);
         popup.show(Main.scene.getWindow());
     }
@@ -181,6 +184,8 @@ public class NewGamePage {
 
         ListView<String> leaderboard = new ListView<>();
         Popup savedPop = new Popup();
+        savedPop.setHideOnEscape(true);
+
         StackPane stack = new StackPane();
         Label title = new Label("Classement");
 
