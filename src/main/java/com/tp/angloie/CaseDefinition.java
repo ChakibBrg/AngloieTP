@@ -31,7 +31,7 @@ public class CaseDefinition extends Question{
 
     }
     public CaseDefinition(ArrayList<QuestionData> questionData) {
-        //super(qst);
+
         this.questionData = questionData;
         c.setFill(Color.BLUE);
 
@@ -54,8 +54,7 @@ public class CaseDefinition extends Question{
     public void setKeyPressedTextField (TextField[] textField) {
 
         for (int j = 0; j < textField.length; j++) {
-            //System.out.println("HELLO curseur: " + curseur);
-            //int i = curseur;
+
             textField[j].setOnKeyReleased(new EventHandler<KeyEvent>() {
                 @Override
                 public void handle(KeyEvent event) {
@@ -132,7 +131,7 @@ public class CaseDefinition extends Question{
             setLimitTextField(motNouv[i]);
         }
         motNouv[2].requestFocus();
-        //mot.setMaxSize(taille, taille);
+
         mot.setFont(Font.font("Verdana", 12));
         //Event related with text field
         mot.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -212,10 +211,11 @@ public class CaseDefinition extends Question{
 
         for (i = 0; i < taille; i++) {
             motContainer.getChildren().add(motNouv[i]);
+            motNouv[i].setAlignment(Pos.CENTER);
+            motNouv[i].setFont(new Font(15));
         }
         motContainer.setSpacing(10);
         vbox.getChildren().add(definition);
-        //vbox.getChildren().add(mot);
         motContainer.setAlignment(Pos.CENTER);
         vbox.getChildren().add(motContainer);
         vbox.setStyle("-fx-background-radius:1000;" +
@@ -225,10 +225,9 @@ public class CaseDefinition extends Question{
                 "      -fx-background-color:'transparent';" +
                 "      -fx-background-opacity:0.5;");
         popup.getContent().add(vbox);
-        /*popup.setAnchorY(100);
-        popup.setAnchorX(50);*/
+
         popup.setHideOnEscape(false);
-        //motNouv[2].requestFocus();
+
         popup.show(Main.scene.getWindow());
 
 
