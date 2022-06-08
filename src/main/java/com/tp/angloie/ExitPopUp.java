@@ -31,7 +31,6 @@ public class ExitPopUp {
     }
 
     @FXML public void Sauvegarder (ActionEvent e) {
-        //Main.stage.close();
         LocalDate date = LocalDate.now();
         Main.jeu.getPartieActuelle().setTitle("Partie sauvegardée: " + date.toString() + " " + Integer.toString(LocalTime.now().getHour()) + ":" + Integer.toString(LocalTime.now().getMinute()));
         System.out.println(Main.jeu.getPartieActuelle().getTitle());

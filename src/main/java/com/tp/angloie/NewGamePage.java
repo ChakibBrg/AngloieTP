@@ -36,12 +36,12 @@ public class NewGamePage {
     protected void initialize() throws IOException {
         if( Main.jeu.getJoueurActuel() != null) {
             if (Main.jeu.getJoueurActuel().getPartiesSauvegardees().size() != 0) loadGameBtn.setDisable(false);
+            else loadGameBtn.setDisable(true);
             Player.setText(Main.jeu.getJoueurActuel().getNom());
         }
     }
 
     public void start() throws IOException {
-        loadGameBtn.setDisable(true);
         showRegisterPop(true);
     }
 
@@ -92,6 +92,7 @@ public class NewGamePage {
     @FXML
     protected void loadGameClick(ActionEvent e) throws IOException {
         ListView<String> savedGames = new ListView<>();
+        Main.scene.getRoot().setDisable(true);
         Popup savedPop = new Popup();
         StackPane stack = new StackPane();
         Button load = new Button();
@@ -107,6 +108,8 @@ public class NewGamePage {
         load.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent actionEvent) {
+                Main.scene.getRoot().setDisable(false);
+
                 String selected = savedGames.getSelectionModel().getSelectedItem();
                 if(!selected.isBlank()) {
                     Main.jeu.setPartieActuelle(Main.jeu.getJoueurActuel().getPartiesSauvegardees().get(selected));
@@ -132,12 +135,35 @@ public class NewGamePage {
                 }
             }
         });
+
+        Button fermerBtn = new Button();
+        fermerBtn.setText("Fermer");
+        fermerBtn.setStyle(" -fx-background-radius:1000;" +
+                "    -fx-text-align: center;" +
+                "-fx-border-radius: 1000;" +
+                "-fx-cursor: hand;" +
+                "-fx-border-color: 'black';" +
+                "-fx-border-thickness: 3;" +
+                "-fx-text-fill:'black';" +
+                "-fx-background-color:'transparent';" );
+        fermerBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                savedPop.hide();
+                Main.scene.getRoot().setDisable(false);
+            }
+        });
+
+
+
         savedGames.setPadding(new Insets(10,10,10,10));
         stack.getChildren().add(savedGames);
         stack.getChildren().add(load);
-        StackPane.setAlignment(load,Pos.BOTTOM_CENTER);
-      StackPane.setMargin(load,new Insets(10));
-
+        stack.getChildren().add(fermerBtn);
+        StackPane.setAlignment(load,Pos.BOTTOM_RIGHT);
+        StackPane.setAlignment(fermerBtn,Pos.BOTTOM_LEFT);
+        StackPane.setMargin(load,new Insets(10));
+        StackPane.setMargin(fermerBtn,new Insets(10));
         savedGames.getItems().setAll(Main.jeu.getJoueurActuel().getPartiesSauvegardees().keySet());
         savedGames.setPrefHeight(300);
 

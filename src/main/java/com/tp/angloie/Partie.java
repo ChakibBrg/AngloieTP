@@ -13,13 +13,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Shape;
@@ -157,7 +155,6 @@ public class Partie implements Serializable {
     private  void actionNormale(int clickedPos){
             if ( canMove ) {
                 if (clickedPos == posProchaine) {
-                    System.out.println("NOICE");
                     action();
 
                 } else try {
@@ -176,11 +173,11 @@ public class Partie implements Serializable {
                         @Override
                         public void handle(ActionEvent event) {
                             instructionPartie.setTextFill(Color.WHITE);
-
                         }
                     });
                 }
             }
+
 
 }
 
@@ -286,7 +283,6 @@ public class Partie implements Serializable {
             do {
                 plateau.deplacer(posActuelle,posProchaine);
                 plateau.getCases().get(posProchaine).action(points, deplacement);
-                System.out.println(plateau.getCases().get(posProchaine).message);
 
                 try {
                     setPosPoints(deplacement);
@@ -318,6 +314,7 @@ public class Partie implements Serializable {
          if ( posProchaine >99 ){
              int over =  posProchaine -99;
              posProchaine = 99-over ;
+             instructionPartie.setText("Allez à la case "+posProchaine);
          }
          if ( posProchaine <0) posProchaine = 0 ; // Si on tombe sur une case malus qui est  la premiere case
          if ( points.get()<0) points.set(0);

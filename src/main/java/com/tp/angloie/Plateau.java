@@ -104,10 +104,7 @@ public class Plateau extends GridPane implements Serializable {
 
         ///////////////////
         setWidth(400);
-
-        //setWidth(Screen.getPrimary().getVisualBounds().getWidth());
         setHeight(400);
-        //setHeight(Screen.getPrimary().getVisualBounds().getHeight());
         randomValues  = new ArrayList<>();
         indexes  = new ArrayList<>();
         Random randGen =  new Random();
@@ -169,32 +166,34 @@ public class Plateau extends GridPane implements Serializable {
         addNum(caseCount,tmp);
 
 
-        ImageView spaceShip  = new ImageView();
-        spaceShip.setImage( new Image(De.class.getResourceAsStream("among/spaceShip.png")));
 
 
-
-        GridPane.setRowSpan(spaceShip,3);
-        GridPane.setColumnSpan(spaceShip,4);
-
-        spaceShip.setFitHeight(200);
-        spaceShip.setFitWidth(200);
-
-        //this.add(spaceShip,j+1,i-1);
 
 
         cases.add(tmp);
 
         imageViewCase= new ImageView();
-
         double radius = Main.scene.getHeight()/30 ;
-
         imageViewCase.setFitHeight(radius +16);
         imageViewCase.setFitWidth(radius * ( (double)35/(double)50)+12);
-
         imageViewCase.setImage(avatar);
-
         cases.get(0).getChildren().add(imageViewCase);
+
+
+
+        ImageView friends  = new ImageView();
+        friends.setImage( new Image(De.class.getResourceAsStream("among/friends.png")));
+
+        GridPane.setRowSpan(friends,3);
+        GridPane.setColumnSpan(friends,4);
+
+        friends.setFitHeight(5*radius);
+        friends.setFitWidth(8*radius);
+
+        this.add(friends,j-4,i-3);
+
+
+
 
 
         startAnim(0,0);
@@ -310,8 +309,11 @@ public class Plateau extends GridPane implements Serializable {
         cases.add(tmp);
 
         imageViewCase= new ImageView();
-        imageViewCase.setFitHeight(50);
-        imageViewCase.setFitWidth(35);
+        double radius = Main.scene.getHeight()/30 ;
+
+        imageViewCase.setFitHeight(radius +16);
+        imageViewCase.setFitWidth(radius * ( (double)35/(double)50)+12);
+
 
         imageViewCase.setImage(avatar);
         cases.get(Main.jeu.getPartieActuelle().getPosActuelle()).getChildren().add(imageViewCase);
@@ -393,7 +395,7 @@ public class Plateau extends GridPane implements Serializable {
                         cases.get(currOut).getChildren().add(imageViewCase);
                     }
                     catch(Exception e){
-                        System.out.println("Errrooor");
+
                     }
 
                     count++;

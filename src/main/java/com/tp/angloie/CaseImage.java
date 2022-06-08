@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
 import javafx.util.Duration;
 
@@ -43,6 +44,7 @@ public class CaseImage extends Question {
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         imageView.setCursor(Cursor.HAND);
+        imageView.setStyle("-fx-border-color: 'green'");      //Coulour verte => Correcte
         imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle (MouseEvent mouseEvent) {
                 if (questionData.getMot() == qst.getMot()) {
@@ -51,7 +53,7 @@ public class CaseImage extends Question {
                     message="Correcte!";
                     Main.jeu.getPartieActuelle().setInstruction(message);
 
-                    imageView.setStyle("-fx-border-color: green");      //Coulour verte => Correcte
+                    imageView.setStyle("-fx-border-color: 'green'");      //Coulour verte => Correcte
                     points.set(points.get()+10);
                     deplacement.set(3);
                     try {
@@ -62,7 +64,7 @@ public class CaseImage extends Question {
                     Main.jeu.getPartieActuelle().majAvatar(deplacement);
                 }
                 else {
-                    message="Faux!!";
+                    message="Faux!";
                     Main.jeu.getPartieActuelle().setInstruction(message);
 
                     try {
@@ -127,7 +129,12 @@ public class CaseImage extends Question {
                 imageViews[i] = new ImageView(questionsChoisies.get(i).getImg());
                 imageViews[i].setFitHeight(150);
                 imageViews[i].setFitWidth(150);
-                imageViews[i].setStyle("-fx-border-width: 5px");
+                
+
+
+                
+                imageViews[i].setStyle("-fx-border-width: 5px;" +
+                        "-fx-border-color: 'green'");
                 i++;
             }
         }
@@ -172,21 +179,35 @@ public class CaseImage extends Question {
             default:
                 System.out.println("Erreur");
         }
-        grid.setHgap(10);
-        grid.setVgap(10);
+        grid.setHgap(20);
+        grid.setVgap(20);
         //grid.setPadding(new Insets(10,10,10,10));
 
         VBox question = new VBox();
         Text label = new Text(qst.getMot());
+        VBox.setMargin(label,new Insets(10));
+
         label.setFill(Color.WHITE);
         label.setFont(Font.font("Verdana", 30));
+        label.setTextAlignment(TextAlignment.CENTER);
+        label.setStyle("-fx-text-align: 'center';" +
+                "-fx-padding: 1em");
         popup.setHeight(50);
         popup.setWidth(50);
         question.getChildren().add(label);
         question.getChildren().add(grid);
+        question.setPadding(new Insets(15));
+        question.setStyle("-fx-background-radius:1000;" +
+                "      -fx-border-color: 'white';" +
+                "      -fx-border-thickness: 3;" +
+                "      -fx-text-fill:'white';" +
+                "      -fx-background-color:'transparent';" +
+                "      -fx-background-opacity:0.5;");
         popup.getContent().add(question);
-        popup.setAnchorX(400);
-        popup.setAnchorY(600);
+
+        popup.setAnchorX(410);
+        popup.setAnchorY(210);
+
         popup.show(Main.scene.getWindow());
 
 
