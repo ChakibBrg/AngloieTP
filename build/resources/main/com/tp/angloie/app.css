@@ -5,6 +5,11 @@
 
 
 
+.imageDef{
+-fx-padding: 5;
+-fx-background-color: white;
+-fx-background-radius: 10;
+}
 
 .button {
     -fx-background-radius:1000;
@@ -45,7 +50,7 @@
 }
 
 .gridpane{
-        -fx-border-radius:30;
+        -fx-border-radius:10;
         -fx-border-thickness: 3;
       	-fx-border-color: 'white';
 }
