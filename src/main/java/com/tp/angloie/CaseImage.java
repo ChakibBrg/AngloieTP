@@ -1,13 +1,8 @@
 package com.tp.angloie;
 
-import javafx.animation.FadeTransition;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -17,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
-import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,8 +44,7 @@ public class CaseImage extends Question {
                 if (questionData.getMot() == qst.getMot()) {
                     //message = "+10 pts";
 
-                    message="Correcte!";
-                    Main.jeu.getPartieActuelle().setInstruction(message);
+
 
                     imageView.setStyle("-fx-border-color: 'green'");      //Coulour verte => Correcte
                     points.set(points.get()+10);
@@ -62,16 +55,19 @@ public class CaseImage extends Question {
                         e.printStackTrace();
                     }
                     Main.jeu.getPartieActuelle().majAvatar(deplacement);
+                    message="Correcte!";
+                    Main.jeu.getPartieActuelle().setInstruction(message);
                 }
                 else {
-                    message="Faux!";
-                    Main.jeu.getPartieActuelle().setInstruction(message);
+
 
                     try {
                         Main.jeu.getPartieActuelle().setPosPoints(deplacement);
                     } catch (Partie.caseSautException e) {
                         e.printStackTrace();
                     }
+                    message="Faux!";
+                    Main.jeu.getPartieActuelle().setInstruction(message);
                     imageView.setStyle("-fx-border-color: red");        //Couleur rouge => Fausse
                 }
                 //Ajouter une transition pour plustard avant le hide
@@ -213,8 +209,4 @@ public class CaseImage extends Question {
 
     }
 
-    @Override
-    void Verification(Joueur player) {
-
-    }
 }

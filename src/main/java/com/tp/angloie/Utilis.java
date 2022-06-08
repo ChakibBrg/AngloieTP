@@ -48,13 +48,6 @@ public  class Utilis {
         });
         fd1.play();
 
-
-
-
-
-
-
-
     }
 
 

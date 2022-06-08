@@ -38,7 +38,6 @@ public class Partie implements Serializable {
     private AtomicInteger points ;
     private  Plateau plateau;
     private  Boolean canMove = false;
-    private Set<Integer> cases_visitees;
     private transient   EventHandler<MouseEvent> clickEvent = null  ;
     private transient EventHandler<KeyEvent> exitEvent=null;
 
@@ -53,10 +52,6 @@ public class Partie implements Serializable {
             e.printStackTrace();
         }
         posActuelle = 0 ;
-
-
-
-
     }
 
     public void setTitle(String title) {
@@ -116,7 +111,6 @@ public class Partie implements Serializable {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == event.getCode().ESCAPE) {
-                    //Main.stage.close();
                     Main.scene.getRoot().setDisable(true);
                     Popup quitter = new Popup();
                     quitter.setHideOnEscape(false);
@@ -255,12 +249,14 @@ public class Partie implements Serializable {
                                 lancerDe.setDisable(true);
                                 instructionPartie.setText("Allez à la case "+posProchaine);
                                 if ( posProchaine >99 ){
-                                    int over =  posProchaine -100;
-                                    posProchaine = 100-over ;
+                                    int over =  posProchaine -99;
+                                    posProchaine = 99-over ;
                                     instructionPartie.setText("Allez à la case "+posProchaine);
                                 }
+
                             }
                         });
+
                     }
     }
     //////// Action a faire apres avoir cliqué sur la bonne case
@@ -273,12 +269,7 @@ public class Partie implements Serializable {
         majAvatar(deplacement);
     }
 
-
-
-
-
-
-
+    ///  deplacer 'avatar + mettre a jour les points et la position
     public void majAvatar( AtomicInteger deplacement){
             do {
                 plateau.deplacer(posActuelle,posProchaine);
@@ -294,12 +285,11 @@ public class Partie implements Serializable {
         }
 
 
-
+        ///Afficher l'instruction ou le message correspondant a chaque case
         public void setInstruction(String msg ){
             instructionPartie.setText(msg);
         }
-
-
+        /// Mettre a jour  la position et les points
      public void setPosPoints ( AtomicInteger deplacement) throws caseSautException{
 
          posActuelle=posProchaine;
@@ -319,9 +309,14 @@ public class Partie implements Serializable {
          if ( posProchaine <0) posProchaine = 0 ; // Si on tombe sur une case malus qui est  la premiere case
          if ( points.get()<0) points.set(0);
          scoreLabel.setText(Integer.toString(points.get()));
+         instructionPartie.setText("Allez à la case "+posProchaine);
+
      }
 
 
+
+
+     /// quelques exceptions
      class MauvaiseCaseException extends Exception {};
      class caseSautException extends Exception{}; // pour attendre le clique de lutilisateur en cas d'une case saut
 

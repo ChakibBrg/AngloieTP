@@ -9,22 +9,9 @@ import java.io.IOException;
 public class QuestionData {
     String mot  ;
     String def  ;
-    Image img  ;   // le tyrp String pour le chemin de l'image ou Image pour l'image elle meme
-                    // ca dependra de notre conception xD
+    Image img  ;
 
 
-    /*public QuestionData(String path) throws FileNotFoundException{
-        try {
-            File repertoire = new File(path);       //Récupérer le repertoire contenant l'image et la déf
-            if (repertoire.isDirectory()) {
-                File[] files = repertoire.listFiles();
-
-            }
-        }
-        catch (FileNotFoundException e) {
-
-        }
-    }*/
 
     public QuestionData(String mot, String def, Image img) {
         this.mot = mot;

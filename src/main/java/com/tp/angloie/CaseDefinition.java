@@ -2,7 +2,6 @@ package com.tp.angloie;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +17,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Popup;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -141,8 +139,7 @@ public class CaseDefinition extends Question{
                     event.consume();
                     String motRecup = mot.getText();
                     if ( motRecup.toLowerCase().equalsIgnoreCase( qst.getMot()) ) {
-                        message="Correcte!";
-                        Main.jeu.getPartieActuelle().setInstruction(message);
+
 
                         points.set(points.get()+20);
                         deplacement.set(4);
@@ -152,11 +149,12 @@ public class CaseDefinition extends Question{
                             e.printStackTrace();
                         }
                         Main.jeu.getPartieActuelle().majAvatar(deplacement);
+                        message="Correcte!";
+                        Main.jeu.getPartieActuelle().setInstruction(message);
                     }
                     else {
 
-                        message="Faux! Bonne réponse: " + qst.getMot();
-                        Main.jeu.getPartieActuelle().setInstruction(message);
+
                         points.set(points.get()-10);
                         try {
                             Main.jeu.getPartieActuelle().setPosPoints(deplacement);
@@ -164,6 +162,8 @@ public class CaseDefinition extends Question{
                             e.printStackTrace();
                         }
                     }
+                    message="Faux! Bonne réponse: " + qst.getMot();
+                    Main.jeu.getPartieActuelle().setInstruction(message);
                     Main.scene.getRoot().setDisable(false);
                     popup.hide();
                 }
@@ -233,8 +233,4 @@ public class CaseDefinition extends Question{
 
     }
 
-    @Override
-    void Verification(Joueur player) {
-
-    }
 }

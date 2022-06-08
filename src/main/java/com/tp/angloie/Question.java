@@ -13,5 +13,4 @@ package com.tp.angloie;
 
    }
 
-   abstract void Verification(Joueur player) ;
-}
+ }

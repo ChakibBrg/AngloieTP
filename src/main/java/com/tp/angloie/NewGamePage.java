@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Path;
 import javafx.stage.Popup;
@@ -52,6 +53,8 @@ public class NewGamePage {
         Path path = new Path();
         path.getStyleClass().add("border"); //$NON-NLS-1$
         path.setManaged(false);
+
+
 
 
         fxmlLoader = new FXMLLoader(Main.class.getResource("UserNamePopUp.fxml"));
@@ -189,7 +192,7 @@ public class NewGamePage {
         parts.put("saved2",test);
 
         Joueur p1 = new Joueur("Chakib",511,parts);
-
+        Joueur.setMeilleurRecord(511);
         Main.jeu.getJoueurs().put(p1.getNom(), p1);
 
         if (Main.jeu != null) {

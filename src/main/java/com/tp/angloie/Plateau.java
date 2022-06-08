@@ -77,6 +77,9 @@ public class Plateau extends GridPane implements Serializable {
                         File[] fichiers = question.listFiles();
                         try {
                             //Accéder au fichier contenant la définition
+
+
+
                             def = "";
                             mot = question.getName();       //Le répertoire est nommé directement comme il faut
                             in = new BufferedReader(new FileReader("src/main/resources/com/tp/angloie/Questions/"+mot+"/"+fichiers[1].getName()));
@@ -160,14 +163,13 @@ public class Plateau extends GridPane implements Serializable {
         }
         tmp=new Fin();
         this.add(tmp,j,i);
+
+
+
         GridPane.setHalignment(tmp, HPos.CENTER);
         GridPane.setValignment(tmp, VPos.CENTER);
 
         addNum(caseCount,tmp);
-
-
-
-
 
 
         cases.add(tmp);
@@ -183,17 +185,11 @@ public class Plateau extends GridPane implements Serializable {
 
         ImageView friends  = new ImageView();
         friends.setImage( new Image(De.class.getResourceAsStream("among/friends.png")));
-
         GridPane.setRowSpan(friends,3);
         GridPane.setColumnSpan(friends,4);
-
         friends.setFitHeight(5*radius);
         friends.setFitWidth(8*radius);
-
         this.add(friends,j-4,i-3);
-
-
-
 
 
         startAnim(0,0);
@@ -211,10 +207,6 @@ public class Plateau extends GridPane implements Serializable {
         rowHigherBond= ROW_MAX_HIGHER_BOUND;
         setWidth(600);
         setHeight(600);
-
-
-
-
 
         questions = new ArrayList<QuestionData>();      //Contiendra toutes les questions (image + définition)
         BufferedReader in = null;
@@ -317,6 +309,17 @@ public class Plateau extends GridPane implements Serializable {
 
         imageViewCase.setImage(avatar);
         cases.get(Main.jeu.getPartieActuelle().getPosActuelle()).getChildren().add(imageViewCase);
+
+        ImageView friends  = new ImageView();
+        friends.setImage( new Image(De.class.getResourceAsStream("among/friends.png")));
+
+        GridPane.setRowSpan(friends,3);
+        GridPane.setColumnSpan(friends,4);
+
+        friends.setFitHeight(5*radius);
+        friends.setFitWidth(8*radius);
+        this.add(friends,j-4,i-3);
+
 
     }
 

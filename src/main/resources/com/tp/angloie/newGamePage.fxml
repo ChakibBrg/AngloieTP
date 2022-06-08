@@ -35,7 +35,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-            <Text fill="#1c1c43" fontSmoothingType="LCD" layoutX="10.0" layoutY="77.0" stroke="#208c9e" strokeWidth="2.0" text="Our Game" textAlignment="CENTER" wrappingWidth="361.6000487804413" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+            <Text fill="#1c1c43" fontSmoothingType="LCD" layoutX="10.0" layoutY="77.0" stroke="#208c9e" strokeWidth="2.0" text="ANGL'Oie" textAlignment="CENTER" wrappingWidth="361.6000487804413" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                <font>
                   <Font size="45.0" />
                </font>

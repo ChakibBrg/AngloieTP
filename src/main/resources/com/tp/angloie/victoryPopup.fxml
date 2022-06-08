@@ -18,7 +18,7 @@
          <children>
             <AnchorPane prefHeight="354.0" prefWidth="582.0">
                <children>
-                  <Button layoutX="215.0" layoutY="297.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="151.0" text="Revenir au menu pricipal " />
+                  <Button layoutX="215.0" layoutY="297.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="151.0" text="Menu principal " />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" prefHeight="102.0" prefWidth="328.0" text="Tu as gagné !" textFill="#e5cd49">
                      <font>
                         <Font size="40.0" />

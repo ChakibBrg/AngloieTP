@@ -67,4 +67,22 @@ public class Jeu  implements Serializable {
 
             return affichage ;
     }
+
+
+
+        public  void  setBestRecord(){
+            if ( joueurs.size() != 0 ) {
+                ArrayList<Joueur> classer = new ArrayList<>(joueurs.values());
+
+                classer.sort(new Comparator<Joueur>() {
+                    @Override
+                    public int compare(Joueur o1, Joueur o2) {
+                        return -Integer.compare(o1.getMeilleurScore(), o2.getMeilleurScore());
+                    }
+                });
+                Joueur.setMeilleurRecord(classer.get(0).getMeilleurScore());
+            }
+
+
+        }
 }

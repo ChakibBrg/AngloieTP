@@ -19,6 +19,7 @@ public class VictoryPopup {
     @FXML  Label scoreValue ;
 
 
+
     @FXML void initialize(){
         bestValue.setText(Integer.toString(Joueur.getMeilleurRecord()));
         recPersoValue.setText(Integer.toString(Main.jeu.getJoueurActuel().getMeilleurScore()));

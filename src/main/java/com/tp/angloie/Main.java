@@ -24,7 +24,7 @@ public class Main extends Application {
         jeu = (Jeu) Utilis.readObjectFromFile("Context.ser");
         if ( jeu == null) jeu  = new Jeu(new TreeMap<>(), null ,null);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGamePage.fxml"));
-
+        jeu.setBestRecord();
          fxmlLoader.load();
         NewGamePage np  =fxmlLoader.getController();
         scene = new Scene(np.rootNewGamePage);

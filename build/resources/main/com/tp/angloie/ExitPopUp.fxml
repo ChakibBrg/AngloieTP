@@ -20,7 +20,7 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Button layoutX="215.0" layoutY="174.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="151.0" text="Revenir au menu principal " />
+            <Button layoutX="215.0" layoutY="174.0" mnemonicParsing="false" onAction="#goBack" prefHeight="37.0" prefWidth="151.0" text="Menu principal" />
             <Button layoutX="215.0" layoutY="102.0" mnemonicParsing="false" onAction="#reprendre" prefHeight="37.0" prefWidth="151.0" text="Reprendre la partie" />
          </children>
       </AnchorPane>
